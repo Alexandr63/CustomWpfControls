@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="DateTimePickerControl.TimePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DateTimePickerControl"
+             xmlns:converters="clr-namespace:DateTimePickerControl.Converters"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:TimespanToHoursStringConverter x:Key="HoursStringConverter"/>
+            <converters:TimespanToMinutesStringConverter x:Key="MinutesStringConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <UserControl.Template>
+        <ControlTemplate>
+            <Grid HorizontalAlignment="Stretch"
+                  VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0" 
+                         x:Name="PART_HoursTextBox"
+                         TabIndex="0"
+                         IsReadOnly="True"
+                         Text="{Binding SelectedTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:TimePicker}}, Converter={StaticResource HoursStringConverter}, UpdateSourceTrigger=PropertyChanged}"
+                         PreviewKeyUp="HoursTextBoxKeyUpEventHandler"
+                         LostFocus="TextBoxLostFocuseventHandler"
+                         SelectionChanged="TextBoxSelectionChangedEventHandler"/>
+
+                <TextBlock Grid.Column="1"
+                           x:Name="PART_SlitterTextBox"
+                           Text=":"/>
+
+                <TextBox Grid.Column="2"
+                         x:Name="PART_MinutesTextBox"
+                         TabIndex="1" 
+                         IsReadOnly="True"
+                         Text="{Binding SelectedTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:TimePicker}}, Converter={StaticResource MinutesStringConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                         PreviewKeyUp="MinutesTextBoxKeyUpEventHandler"
+                         LostFocus="TextBoxLostFocuseventHandler"
+                         SelectionChanged="TextBoxSelectionChangedEventHandler"/>
+
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" 
+                            x:Name="PART_UpButton"
+                            TabIndex="2" 
+                            Click="UpButtonClickEventHandler"/>
+
+                    <Button Grid.Row="1" 
+                            x:Name="PART_DownButton"
+                            TabIndex="3" 
+                            Click="DownButtonClickEventHandler"/>
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>
