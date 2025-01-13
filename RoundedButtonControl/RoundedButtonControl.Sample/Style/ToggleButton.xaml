@@ -4,6 +4,8 @@
     <Style x:Key="RoundedToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Width" Value="32"/>
         <Setter Property="Background" Value="{DynamicResource SecondaryElement}"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundPrimary}"/>
         <Setter Property="Template">

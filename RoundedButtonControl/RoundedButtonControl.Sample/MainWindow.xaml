@@ -115,9 +115,5 @@
                       Margin="5"
                       Style="{DynamicResource RoundedToggleButton}"
                       Content="TD"/>
-
-
-
-
     </Grid>
 </Window>
