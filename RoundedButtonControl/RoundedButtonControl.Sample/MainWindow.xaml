@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:roundedButtonControl="clr-namespace:RoundedButtonControl;assembly=RoundedButtonControl"
         mc:Ignorable="d"
         Title="MainWindow"
         Background="{DynamicResource BackgroundPrimary}"
@@ -12,13 +13,53 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="1"
-                Style="{DynamicResource GrayRoundedButton}"
-                Width="150"
-                Height="32"
-                Content="Rounded button"/>
+        <roundedButtonControl:RoundedButton Grid.Row="1"
+                                            Focusable="True"
+                                            Margin="5"
+                                            Style="{DynamicResource YellowRoundedButton}"
+                                            Width="150"
+                                            Height="32"
+                                            Content="Rounded button"/>
+
+        <roundedButtonControl:RoundedButton Grid.Row="2"
+                                            Focusable="True"
+                                            Margin="5"
+                                            Style="{DynamicResource GrayRoundedButton}"
+                                            Width="150"
+                                            Height="32"
+                                            Content="Rounded button"/>
+
+        <roundedButtonControl:RoundedButton Grid.Row="3"
+                                            Margin="5"
+                                            Style="{DynamicResource YellowRoundedButton}"
+                                            Width="150"
+                                            Height="32"
+                                            Content="Rounded button"/>
+
+        <roundedButtonControl:RoundedButton Grid.Row="4"
+                                            Margin="5"
+                                            Style="{DynamicResource GrayRoundedButton}"
+                                            Width="150"
+                                            Height="32"
+                                            Content="Rounded button"/>
+
+        <roundedButtonControl:RoundedButton Grid.Row="5"
+                                            Margin="5"
+                                            Style="{DynamicResource ToolGrayRoundButton}"
+                                            Content="B"/>
+
+        <roundedButtonControl:RoundedButton Grid.Row="6"
+                                            Focusable="True"
+                                            Margin="5"
+                                            Style="{DynamicResource ToolGrayRoundButton}"
+                                            Content="F"/>
     </Grid>
 </Window>

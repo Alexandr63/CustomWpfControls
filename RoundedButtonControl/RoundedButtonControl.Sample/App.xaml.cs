@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace RoundedButton.Samples
+namespace RoundedButtonControl.Sample
 {
     /// <summary>
     /// Interaction logic for App.xaml

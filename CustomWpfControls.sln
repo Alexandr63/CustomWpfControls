@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimePickerControl", "Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimePickerControl.Sample", "DateTimePickerControl\DateTimePickerControl.Sample\DateTimePickerControl.Sample.csproj", "{CE1D53AF-11CD-4812-A9FA-5F97404126AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoundedButtonControl", "RoundedButtonControl\RoundedButtonControl\RoundedButtonControl.csproj", "{AFD9D356-E308-4394-B379-CAFCFBE23F92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{CE1D53AF-11CD-4812-A9FA-5F97404126AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE1D53AF-11CD-4812-A9FA-5F97404126AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE1D53AF-11CD-4812-A9FA-5F97404126AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFD9D356-E308-4394-B379-CAFCFBE23F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD9D356-E308-4394-B379-CAFCFBE23F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD9D356-E308-4394-B379-CAFCFBE23F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD9D356-E308-4394-B379-CAFCFBE23F92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{E018289F-9344-41AA-BAD2-60833351E9F9} = {46F9EDF5-7AE1-485F-8151-7DA91391D0C0}
 		{FC3E3DE9-F6A4-406A-88A3-3FE20B4E2ED3} = {6EA29543-7130-42ED-8FD5-1202360DC700}
 		{CE1D53AF-11CD-4812-A9FA-5F97404126AD} = {6EA29543-7130-42ED-8FD5-1202360DC700}
+		{AFD9D356-E308-4394-B379-CAFCFBE23F92} = {D58356C2-64AC-4F7C-B6F0-4D17A7B0AB47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D25D36A-2A44-4D0D-B77F-8466F7675A7A}

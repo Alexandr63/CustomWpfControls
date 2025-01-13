@@ -3,6 +3,7 @@
 
     <SolidColorBrush x:Key="BackgroundPrimary" Color="#121212" />
     <SolidColorBrush x:Key="BackgroundSecondary" Color="#202020" />
+    <SolidColorBrush x:Key="BackgroundPrimaryOpposite" Color="#FFFFFF" />
 
     <SolidColorBrush x:Key="ForegroundPrimary" Color="#FFFFFF" Opacity="0.88" />
     <SolidColorBrush x:Key="ForegroundSecondary" Color="#FFFFFF" Opacity="0.72" />

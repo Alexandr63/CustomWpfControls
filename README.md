@@ -1,1 +1,3 @@
-# CustomWpfControls
+# WPF переключатель
+
+![Пример](example.png)
