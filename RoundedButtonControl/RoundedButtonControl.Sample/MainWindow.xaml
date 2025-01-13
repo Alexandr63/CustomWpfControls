@@ -9,12 +9,14 @@
         Background="{DynamicResource BackgroundPrimary}"
         Height="300"
         Width="500">
-    <Grid>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -22,44 +24,78 @@
         </Grid.RowDefinitions>
 
         <roundedButtonControl:RoundedButton Grid.Row="1"
+                                            Grid.Column="0"
                                             Focusable="True"
                                             Margin="5"
                                             Style="{DynamicResource YellowRoundedButton}"
-                                            Width="150"
+                                            Width="180"
                                             Height="32"
-                                            Content="Rounded button"/>
+                                            Content="Rounded button (focusable)"/>
 
         <roundedButtonControl:RoundedButton Grid.Row="2"
-                                            Focusable="True"
+                                            Grid.Column="0"
                                             Margin="5"
-                                            Style="{DynamicResource GrayRoundedButton}"
-                                            Width="150"
+                                            Style="{DynamicResource YellowRoundedButton}"
+                                            Width="180"
                                             Height="32"
                                             Content="Rounded button"/>
 
         <roundedButtonControl:RoundedButton Grid.Row="3"
+                                            Grid.Column="0"
+                                            IsEnabled="False"
                                             Margin="5"
                                             Style="{DynamicResource YellowRoundedButton}"
-                                            Width="150"
+                                            Width="180"
                                             Height="32"
-                                            Content="Rounded button"/>
+                                            Content="Rounded button (disable)"/>
 
-        <roundedButtonControl:RoundedButton Grid.Row="4"
+        <roundedButtonControl:RoundedButton Grid.Row="1"
+                                            Grid.Column="1"
+                                            Focusable="True"
                                             Margin="5"
                                             Style="{DynamicResource GrayRoundedButton}"
-                                            Width="150"
+                                            Width="180"
+                                            Height="32"
+                                            Content="Rounded button (focusable)"/>
+
+        <roundedButtonControl:RoundedButton Grid.Row="2"
+                                            Grid.Column="1"
+                                            Margin="5"
+                                            Style="{DynamicResource GrayRoundedButton}"
+                                            Width="180"
                                             Height="32"
                                             Content="Rounded button"/>
 
-        <roundedButtonControl:RoundedButton Grid.Row="5"
+        <roundedButtonControl:RoundedButton Grid.Row="3"
+                                            Grid.Column="1"
+                                            IsEnabled="False"
                                             Margin="5"
-                                            Style="{DynamicResource ToolGrayRoundButton}"
-                                            Content="B"/>
+                                            Style="{DynamicResource GrayRoundedButton}"
+                                            Width="180"
+                                            Height="32"
+                                            Content="Rounded button (disable)"/>
 
-        <roundedButtonControl:RoundedButton Grid.Row="6"
+        <roundedButtonControl:RoundedButton Grid.Row="1"
+                                            Grid.Column="2"
                                             Focusable="True"
                                             Margin="5"
                                             Style="{DynamicResource ToolGrayRoundButton}"
                                             Content="F"/>
+
+        <roundedButtonControl:RoundedButton Grid.Row="2"
+                                            Grid.Column="2"
+                                            Margin="5"
+                                            Style="{DynamicResource ToolGrayRoundButton}"
+                                            Content="B"/>
+
+        <roundedButtonControl:RoundedButton Grid.Row="3"
+                                            Grid.Column="2"
+                                            IsEnabled="False"
+                                            Margin="5"
+                                            Style="{DynamicResource ToolGrayRoundButton}"
+                                            Content="D"/>
+
+
+        
     </Grid>
 </Window>
