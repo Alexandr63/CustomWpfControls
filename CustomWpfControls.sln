@@ -5,8 +5,6 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToggleControl", "ToggleControl", "{DCD0042F-8E14-40DA-A71B-C3229A81163F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToggleControl", "ToggleControl\ToggleControl\ToggleControl.csproj", "{D2FB8CE5-2C11-4A75-97D7-0B0677909D1E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToggleControl.Sample", "ToggleControl\ToggleControl.Sample\ToggleControl.Sample.csproj", "{7E2BEEEC-3F94-423A-B416-8C179EA3B7A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RoundedButtonControl", "RoundedButtonControl", "{D58356C2-64AC-4F7C-B6F0-4D17A7B0AB47}"
@@ -31,10 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D2FB8CE5-2C11-4A75-97D7-0B0677909D1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2FB8CE5-2C11-4A75-97D7-0B0677909D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2FB8CE5-2C11-4A75-97D7-0B0677909D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2FB8CE5-2C11-4A75-97D7-0B0677909D1E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E2BEEEC-3F94-423A-B416-8C179EA3B7A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E2BEEEC-3F94-423A-B416-8C179EA3B7A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E2BEEEC-3F94-423A-B416-8C179EA3B7A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -64,7 +58,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D2FB8CE5-2C11-4A75-97D7-0B0677909D1E} = {DCD0042F-8E14-40DA-A71B-C3229A81163F}
 		{7E2BEEEC-3F94-423A-B416-8C179EA3B7A5} = {DCD0042F-8E14-40DA-A71B-C3229A81163F}
 		{F3A126CB-135F-4FA6-BCD8-2FB4A96AE8F3} = {D58356C2-64AC-4F7C-B6F0-4D17A7B0AB47}
 		{DAA97F3C-0D19-4FA7-8515-132DB9628EEC} = {46F9EDF5-7AE1-485F-8151-7DA91391D0C0}

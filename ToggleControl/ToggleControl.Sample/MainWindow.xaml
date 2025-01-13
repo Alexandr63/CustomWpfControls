@@ -7,18 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow"
         Background="{DynamicResource BackgroundPrimary}"
-        Height="300"
+        Height="500"
         Width="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <toggleControl:Toggle Grid.Row="1"
-                              Margin="20 0"
-                              Title="Test toggle"
-                              FontSize="16"/>
+        <ToggleButton Grid.Row="1" Margin="10">
+            Test toggle
+        </ToggleButton>
+
+        <ToggleButton Grid.Row="2" Margin="10" IsChecked="True">
+            Test toggle
+        </ToggleButton>
+
+        <ToggleButton Grid.Row="3" Margin="10" IsEnabled="False">
+            Test toggle
+        </ToggleButton>
+
+        <ToggleButton Grid.Row="4" Margin="10" IsChecked="True" IsEnabled="False">
+            Test toggle
+        </ToggleButton>
     </Grid>
 </Window>
