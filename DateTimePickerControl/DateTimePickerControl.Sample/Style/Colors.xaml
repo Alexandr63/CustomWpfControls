@@ -3,10 +3,14 @@
 
     <SolidColorBrush x:Key="BackgroundPrimary" Color="#121212" />
     <SolidColorBrush x:Key="BackgroundSecondary" Color="#202020" />
+    <SolidColorBrush x:Key="BackgroundPrimaryOpposite" Color="#FFFFFF" />
 
     <SolidColorBrush x:Key="ForegroundPrimary" Color="#FFFFFF" Opacity="0.88" />
     <SolidColorBrush x:Key="ForegroundSecondary" Color="#FFFFFF" Opacity="0.72" />
     <SolidColorBrush x:Key="ForegroundHover" Color="#FFFFFF" Opacity="0.5" />
+    <SolidColorBrush x:Key="ForegroundTag" Color="#322405" />
+
+    <SolidColorBrush x:Key="ScanBackgroundMarkers" Color="#3B3B3B" />
 
     <SolidColorBrush x:Key="BorderPrimary" Color="#FFFFFF" Opacity="0.15" />
     <SolidColorBrush x:Key="BorderSecondary" Color="#5C636B" />
@@ -20,5 +24,50 @@
     <SolidColorBrush x:Key="SecondaryElementHover" Color="#FFFFFF" Opacity="0.16" />
     <SolidColorBrush x:Key="SecondaryElementPressed" Color="#FFFFFF" Opacity="0.2" />
 
+    <SolidColorBrush x:Key="TertiaryElement" Color="#3D91FF" />
+    <SolidColorBrush x:Key="TertiaryElementHover" Color="#71AFFF" />
+
+    <SolidColorBrush x:Key="ErrorPanelBackground" Color="#F55656" Opacity="0.24" />
+    <SolidColorBrush x:Key="WarningPanelBackground" Color="#FAB619" Opacity="0.28" />
+    <SolidColorBrush x:Key="SuccessPanelBackground" Color="#10D952" Opacity="0.28" />
+
     <SolidColorBrush x:Key="Error" Color="#FB4040" />
+    <SolidColorBrush x:Key="ErrorHover" Color="#A00707" />
+
+    <SolidColorBrush x:Key="Warning" Color="#FAB619" />
+
+    <SolidColorBrush x:Key="Success" Color="#10D952" />
+    <SolidColorBrush x:Key="SuccessHover" Color="#00A127" />
+
+    <SolidColorBrush x:Key="ModalOverlay" Color="#000000" Opacity="0.75" />
+    <SolidColorBrush x:Key="ModalBackground" Color="#202020" />
+
+    <SolidColorBrush x:Key="WindowButtonHover" Color="#2A2A2A" />
+    <SolidColorBrush x:Key="WindowCloseButtonHover" Color="#FB4040" />
+    <SolidColorBrush x:Key="WindowCloseButtonForeground" Color="#121212" />
+
+    <!-- Цвета для кнопок работы со сканом. Там нельзя использовать прозрачность. -->
+    <SolidColorBrush x:Key="ScanViewerButtonBackground">#2A2A2A</SolidColorBrush>
+    <SolidColorBrush x:Key="ScanViewerButtonBackgroundHover">#383838</SolidColorBrush>
+    <SolidColorBrush x:Key="ScanViewerButtonBackgroundPressed">#414141</SolidColorBrush>
+    <SolidColorBrush x:Key="ScanViewerButtonBackgroundDisable">#202020</SolidColorBrush>
+    <SolidColorBrush x:Key="ScanViewerButtonForeground">#E3E3E3</SolidColorBrush>
+    <SolidColorBrush x:Key="ScanViewerButtonForegroundHover">#888888</SolidColorBrush>
+    <SolidColorBrush x:Key="ScanViewerButtonForegroundPressed">#BDBDBD</SolidColorBrush>
+    <SolidColorBrush x:Key="ScanViewerButtonForegroundDisable">#878787</SolidColorBrush>
+
+    <!-- Цвета бегунка слайдера. В его стилях не везде можно использовать SolidColorBrush и прозрачность. -->
+    <SolidColorBrush x:Key="SliderThumbColor">#E3E3E3</SolidColorBrush>
+    <Color x:Key="SliderThumbHoverColor">#888888</Color>
+    <Color x:Key="SliderThumbPressedColor">#BDBDBD</Color>
+
+    <!-- Цвета для контроле редактирования даты и времени. -->
+    <SolidColorBrush x:Key="DateTimePanelBackground" Color="#262626"/>
+    <SolidColorBrush x:Key="CalendarBackground" Color="#373737" />
+    <SolidColorBrush x:Key="CalendarSelectedBackground" Color="#3366CC" />
+    <Color x:Key="CalendarDisabledColor">#FFFFFF</Color>
+    <Color x:Key="CalendarTodayBackgroundColor">#7290CC</Color>
+    <Color x:Key="CalendarSelectedBackgroundColor">#3366CC</Color>
+    <Color x:Key="CalendarForegroundColor">#FFFFFF</Color>
+
 </ResourceDictionary>

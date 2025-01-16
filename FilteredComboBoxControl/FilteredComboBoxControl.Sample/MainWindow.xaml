@@ -23,6 +23,7 @@
 
         <filteredComboBoxControl:FilteredComboBox Grid.Row="3"
                                                   Margin="20 0"
+                                                  Focusable="False"
                                                   Width="250"
                                                   Height="32"
                                                   ItemsSource="{Binding TestItems}"
@@ -30,6 +31,7 @@
 
         <ComboBox Grid.Row="5"
                   Margin="20 0"
+                  Focusable="False"
                   Width="250"
                   Height="32"
                   ItemsSource="{Binding TestItems}"

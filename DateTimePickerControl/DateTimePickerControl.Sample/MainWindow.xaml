@@ -14,9 +14,27 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <dateTimePickerControl:TimePicker Grid.Row="1" Width="70"/>
+        <Border Grid.Row="1" 
+                Width="300"
+                Height="36"
+                Background="DimGray" 
+                BorderThickness="2" 
+                BorderBrush="DarkGray"
+                CornerRadius="10">
+            <dateTimePickerControl:TimePicker Width="70"/>
+        </Border>
+        <Border Grid.Row="3" 
+                Width="300"
+                Background="DimGray" 
+                BorderThickness="2" 
+                BorderBrush="DarkGray"
+                CornerRadius="10">
+            <dateTimePickerControl:DateTimePicker Width="270" DateTimeFormatString="dd:MM:yyyy HH:mm"/>
+        </Border>
     </Grid>
 </Window>

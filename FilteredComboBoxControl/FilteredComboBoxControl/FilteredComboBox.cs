@@ -9,6 +9,13 @@ namespace FilteredComboBoxControl
 {
     public class FilteredComboBox : ComboBox
     {
+        #region Constants
+
+        public const string EDITABLE_TEXT_BOX_PART_NAME = "PART_EditableTextBox";
+        public const string CONTENT_SITE_NAME = "ContentSite";
+
+        #endregion
+
         #region Private Fields
 
         private TextBox _filterTextBox;
@@ -16,29 +23,22 @@ namespace FilteredComboBoxControl
 
         #endregion
 
-        #region Ctor
+        #region Methods
 
-        public FilteredComboBox() : base()
+        public override void OnApplyTemplate()
         {
-            Initialized += InitializedEventHandler;
-        }
+            base.OnApplyTemplate();
 
-        #endregion
+            _filterTextBox = (TextBox)GetTemplateChild(EDITABLE_TEXT_BOX_PART_NAME);
+            _contentSite = (ContentPresenter)GetTemplateChild(CONTENT_SITE_NAME);
 
-        #region Private Methods
-
-        private void InitializedEventHandler(object sender, EventArgs e)
-        {
-            // Отключаем режим редактирования, если его по ошибке включат
-            IsEditable = false;
+            _filterTextBox.TextChanged += FilterTextBoxKeyUpEventHandler;
 
             DropDownOpened += DropDownOpenedEventHandler;
             DropDownClosed += DropDownClosedEventHandler;
 
-            _filterTextBox = (TextBox)GetDescendantByName(this, "PART_EditableTextBox");
-            _contentSite = (ContentPresenter)GetDescendantByName(this, "ContentSite");
-
-            _filterTextBox.TextChanged += FilterTextBoxKeyUpEventHandler;
+            // Отключаем режим редактирования, если его по ошибке включат
+            IsEditable = false;
         }
 
         private void FilterTextBoxKeyUpEventHandler(object sender, TextChangedEventArgs e)

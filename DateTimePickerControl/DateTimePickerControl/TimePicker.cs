@@ -9,7 +9,7 @@ using DateTimePickerControl.Tools;
 namespace DateTimePickerControl
 {
     /// <summary>
-    /// Логика взаимодействия для TimePicker.xaml
+    /// Контрол выбора времени
     /// </summary>
     [TemplatePart(Name = HOURS_TEXT_BOX_PART_NAME, Type = typeof(TextBox))]
     [TemplatePart(Name = SLITTER_TEXT_BLOCK_PART_NAME, Type = typeof(TextBlock))]
@@ -41,7 +41,7 @@ namespace DateTimePickerControl
 
         public TimePicker()
         {
-            SelectedTime = _minTimeSpan;
+            Time = _minTimeSpan;
         }
 
         #endregion
@@ -51,13 +51,13 @@ namespace DateTimePickerControl
         /// <summary>
         /// Время, отображаемое в контроле.
         /// </summary>
-        public TimeSpan SelectedTime
+        public TimeSpan Time
         {
-            get => (TimeSpan)GetValue(SelectedTimeProperty);
-            set => SetValue(SelectedTimeProperty, value);
+            get => (TimeSpan)GetValue(TimeProperty);
+            set => SetValue(TimeProperty, value);
         }
 
-        public static readonly DependencyProperty SelectedTimeProperty = DependencyProperty.Register(nameof(SelectedTime), typeof(TimeSpan), typeof(TimePicker), new UIPropertyMetadata(TimePropertyChangedCallback));
+        public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(nameof(Time), typeof(TimeSpan), typeof(TimePicker), new UIPropertyMetadata(TimePropertyChangedCallback));
 
         #endregion
 
@@ -75,15 +75,15 @@ namespace DateTimePickerControl
 
                 Binding hoursBinding = new Binding
                 {
-                    Path = new PropertyPath(nameof(SelectedTime)),
+                    Path = new PropertyPath(nameof(Time)),
                     Mode = BindingMode.TwoWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                    Converter = new TimespanToHoursStringConverter(),
                     RelativeSource = new RelativeSource()
                     {
                         Mode = RelativeSourceMode.FindAncestor,
                         AncestorType = typeof(TimePicker)
-                    },
-                    Converter = new TimespanToHoursStringConverter(),
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    }
                 };
                 hoursTextBox.SetBinding(TextBox.TextProperty, hoursBinding);
             }
@@ -96,15 +96,15 @@ namespace DateTimePickerControl
 
                 Binding minutesBinding = new Binding
                 {
-                    Path = new PropertyPath(nameof(SelectedTime)),
+                    Path = new PropertyPath(nameof(Time)),
                     Mode = BindingMode.TwoWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                    Converter = new TimespanToMinutesStringConverter(),
                     RelativeSource = new RelativeSource()
                     {
                         Mode = RelativeSourceMode.FindAncestor,
                         AncestorType = typeof(TimePicker)
-                    },
-                    Converter = new TimespanToMinutesStringConverter(),
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    }
                 };
                 minutesTextBox.SetBinding(TextBox.TextProperty, minutesBinding);
             }
@@ -128,11 +128,11 @@ namespace DateTimePickerControl
         {
             if ((TimeSpan)e.NewValue < _minTimeSpan)
             {
-                ((TimePicker)d).SelectedTime = _minTimeSpan;
+                ((TimePicker)d).Time = _minTimeSpan;
             }
             else if ((TimeSpan)e.NewValue > _maxTimeSpan)
             {
-                ((TimePicker)d).SelectedTime = _maxTimeSpan;
+                ((TimePicker)d).Time = _maxTimeSpan;
             }
         }
 
@@ -141,16 +141,16 @@ namespace DateTimePickerControl
             switch (GetStepValue())
             {
                 case StepValue.FiveMinutes:
-                    SelectedTime = SelectedTime.Add(new TimeSpan(0, 5, 0));
+                    Time = Time.Add(new TimeSpan(0, 5, 0));
                     break;
                 case StepValue.TenMinutes:
-                    SelectedTime = SelectedTime.Add(new TimeSpan(0, 10, 0));
+                    Time = Time.Add(new TimeSpan(0, 10, 0));
                     break;
                 case StepValue.OneHour:
-                    SelectedTime = SelectedTime.Add(new TimeSpan(1, 0, 0));
+                    Time = Time.Add(new TimeSpan(1, 0, 0));
                     break;
                 default:
-                    SelectedTime = SelectedTime.Add(new TimeSpan(0, 1, 0));
+                    Time = Time.Add(new TimeSpan(0, 1, 0));
                     break;
             }
         }
@@ -160,16 +160,16 @@ namespace DateTimePickerControl
             switch (GetStepValue())
             {
                 case StepValue.FiveMinutes:
-                    SelectedTime = SelectedTime.Add(new TimeSpan(0, -5, 0));
+                    Time = Time.Add(new TimeSpan(0, -5, 0));
                     break;
                 case StepValue.TenMinutes:
-                    SelectedTime = SelectedTime.Add(new TimeSpan(0, -10, 0));
+                    Time = Time.Add(new TimeSpan(0, -10, 0));
                     break;
                 case StepValue.OneHour:
-                    SelectedTime = SelectedTime.Add(new TimeSpan(-1, 0, 0));
+                    Time = Time.Add(new TimeSpan(-1, 0, 0));
                     break;
                 default:
-                    SelectedTime = SelectedTime.Add(new TimeSpan(0, -1, 0));
+                    Time = Time.Add(new TimeSpan(0, -1, 0));
                     break;
             }
         }
@@ -183,7 +183,7 @@ namespace DateTimePickerControl
                     _previewDigit = 0;
                 }
 
-                SelectedTime = new TimeSpan(_previewDigit * 10 + keyValue, SelectedTime.Minutes, 0);
+                Time = new TimeSpan(_previewDigit * 10 + keyValue, Time.Minutes, 0);
 
                 _previewDigit = keyValue;
             }
@@ -198,7 +198,7 @@ namespace DateTimePickerControl
                     _previewDigit = 0;
                 }
 
-                SelectedTime = new TimeSpan(SelectedTime.Hours, _previewDigit * 10 + keyValue, 0);
+                Time = new TimeSpan(Time.Hours, _previewDigit * 10 + keyValue, 0);
 
                 _previewDigit = keyValue;
             }
