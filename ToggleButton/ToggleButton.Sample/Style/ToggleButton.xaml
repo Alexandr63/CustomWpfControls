@@ -116,7 +116,7 @@
 
             </Setter.Value>
         </Setter>
-
+        
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="0.56"/>
@@ -129,6 +129,7 @@
                 </MultiTrigger.Conditions>
                 <MultiTrigger.Setters>
                     <Setter Property="Foreground" Value="{DynamicResource ForegroundHover}"/>
+                    <Setter Property="Background" Value="{DynamicResource PrimaryElementHover}"/>
                 </MultiTrigger.Setters>
             </MultiTrigger>
 
@@ -146,22 +147,14 @@
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="False"/>
-                    <Condition Property="IsChecked" Value="True"/>
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                    <!-- Using default colors -->
-                </MultiTrigger.Setters>
-            </MultiTrigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="False"/>
                     <Condition Property="IsChecked" Value="False"/>
                 </MultiTrigger.Conditions>
                 <MultiTrigger.Setters>
                     <Setter Property="Background" Value="{DynamicResource SecondaryElement}"/>
                 </MultiTrigger.Setters>
             </MultiTrigger>
+
+            <!--For IsMouseOver - False and IsChecked True using default colors-->
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

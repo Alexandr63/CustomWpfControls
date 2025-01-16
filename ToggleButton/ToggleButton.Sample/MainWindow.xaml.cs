@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ToggleControl.Samples
+namespace ToggleButton.Sample
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

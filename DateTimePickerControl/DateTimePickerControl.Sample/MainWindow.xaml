@@ -17,6 +17,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <dateTimePickerControl:TimePicker Grid.Row="1" />
+        <dateTimePickerControl:TimePicker Grid.Row="1" Width="70"/>
     </Grid>
 </Window>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using DateTimePickerControl.Converters;
 using DateTimePickerControl.Tools;
 
 namespace DateTimePickerControl
@@ -9,8 +11,23 @@ namespace DateTimePickerControl
     /// <summary>
     /// Логика взаимодействия для TimePicker.xaml
     /// </summary>
-    public partial class TimePicker
+    [TemplatePart(Name = HOURS_TEXT_BOX_PART_NAME, Type = typeof(TextBox))]
+    [TemplatePart(Name = SLITTER_TEXT_BLOCK_PART_NAME, Type = typeof(TextBlock))]
+    [TemplatePart(Name = MINUTES_TEXT_BOX_PART_NAME, Type = typeof(TextBox))]
+    [TemplatePart(Name = UP_BUTTON_PART_NAME, Type = typeof(Button))]
+    [TemplatePart(Name = DOWN_BUTTON_PART_NAME, Type = typeof(Button))]
+    public class TimePicker : Control
     {
+        #region Constants
+
+        public const string HOURS_TEXT_BOX_PART_NAME = "PART_HoursTextBox";
+        public const string SLITTER_TEXT_BLOCK_PART_NAME = "PART_SlitterTextBlock";
+        public const string MINUTES_TEXT_BOX_PART_NAME = "PART_MinutesTextBox";
+        public const string UP_BUTTON_PART_NAME = "PART_UpButton";
+        public const string DOWN_BUTTON_PART_NAME = "PART_DownButton";
+
+        #endregion
+
         #region Private Fields
 
         private static readonly TimeSpan _maxTimeSpan = new TimeSpan(23, 59, 00);
@@ -24,8 +41,6 @@ namespace DateTimePickerControl
 
         public TimePicker()
         {
-            InitializeComponent();
-
             SelectedTime = _minTimeSpan;
         }
 
@@ -43,6 +58,67 @@ namespace DateTimePickerControl
         }
 
         public static readonly DependencyProperty SelectedTimeProperty = DependencyProperty.Register(nameof(SelectedTime), typeof(TimeSpan), typeof(TimePicker), new UIPropertyMetadata(TimePropertyChangedCallback));
+
+        #endregion
+
+        #region Public Methods
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            if (GetTemplateChild(HOURS_TEXT_BOX_PART_NAME) is TextBox hoursTextBox)
+            {
+                hoursTextBox.PreviewKeyUp += HoursTextBoxKeyUpEventHandler;
+                hoursTextBox.LostFocus += TextBoxLostFocuseventHandler;
+                hoursTextBox.SelectionChanged += TextBoxSelectionChangedEventHandler;
+
+                Binding hoursBinding = new Binding
+                {
+                    Path = new PropertyPath(nameof(SelectedTime)),
+                    Mode = BindingMode.TwoWay,
+                    RelativeSource = new RelativeSource()
+                    {
+                        Mode = RelativeSourceMode.FindAncestor,
+                        AncestorType = typeof(TimePicker)
+                    },
+                    Converter = new TimespanToHoursStringConverter(),
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                };
+                hoursTextBox.SetBinding(TextBox.TextProperty, hoursBinding);
+            }
+
+            if (GetTemplateChild(MINUTES_TEXT_BOX_PART_NAME) is TextBox minutesTextBox)
+            {
+                minutesTextBox.PreviewKeyUp += MinutesTextBoxKeyUpEventHandler;
+                minutesTextBox.LostFocus += TextBoxLostFocuseventHandler;
+                minutesTextBox.SelectionChanged += TextBoxSelectionChangedEventHandler;
+
+                Binding minutesBinding = new Binding
+                {
+                    Path = new PropertyPath(nameof(SelectedTime)),
+                    Mode = BindingMode.TwoWay,
+                    RelativeSource = new RelativeSource()
+                    {
+                        Mode = RelativeSourceMode.FindAncestor,
+                        AncestorType = typeof(TimePicker)
+                    },
+                    Converter = new TimespanToMinutesStringConverter(),
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                };
+                minutesTextBox.SetBinding(TextBox.TextProperty, minutesBinding);
+            }
+
+            if (GetTemplateChild(UP_BUTTON_PART_NAME) is Button upButton)
+            {
+                upButton.Click += UpButtonClickEventHandler;
+            }
+
+            if (GetTemplateChild(DOWN_BUTTON_PART_NAME) is Button downButton)
+            {
+                downButton.Click += DownButtonClickEventHandler;
+            }
+        }
 
         #endregion
 
