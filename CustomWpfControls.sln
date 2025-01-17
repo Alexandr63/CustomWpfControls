@@ -3,27 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RoundedButtonControl", "RoundedButtonControl", "{D58356C2-64AC-4F7C-B6F0-4D17A7B0AB47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomWpfControls", "CustomWpfControls\CustomWpfControls.csproj", "{D7B8B751-7EC5-4820-A855-2225D8B7FCED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoundedButtonControl.Sample", "RoundedButtonControl\RoundedButtonControl.Sample\RoundedButtonControl.Sample.csproj", "{F3A126CB-135F-4FA6-BCD8-2FB4A96AE8F3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilteredComboBoxControl", "FilteredComboBoxControl", "{46F9EDF5-7AE1-485F-8151-7DA91391D0C0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilteredComboBoxControl", "FilteredComboBoxControl\FilteredComboBoxControl\FilteredComboBoxControl.csproj", "{DAA97F3C-0D19-4FA7-8515-132DB9628EEC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilteredComboBoxControl.Sample", "FilteredComboBoxControl\FilteredComboBoxControl.Sample\FilteredComboBoxControl.Sample.csproj", "{E018289F-9344-41AA-BAD2-60833351E9F9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DateTimePickerControl", "DateTimePickerControl", "{6EA29543-7130-42ED-8FD5-1202360DC700}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimePickerControl", "DateTimePickerControl\DateTimePickerControl\DateTimePickerControl.csproj", "{FC3E3DE9-F6A4-406A-88A3-3FE20B4E2ED3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimePickerControl.Sample", "DateTimePickerControl\DateTimePickerControl.Sample\DateTimePickerControl.Sample.csproj", "{CE1D53AF-11CD-4812-A9FA-5F97404126AD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoundedButtonControl", "RoundedButtonControl\RoundedButtonControl\RoundedButtonControl.csproj", "{AFD9D356-E308-4394-B379-CAFCFBE23F92}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToggleButton", "ToggleButton", "{4A897783-F9CD-4ED1-8AA9-D8EEECC17F74}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToggleButton.Sample", "ToggleButton\ToggleButton.Sample\ToggleButton.Sample.csproj", "{319ABF3D-377F-4F1D-9046-A6425D04FE24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomWpfControls.Sample", "CustomWpfControls.Sample\CustomWpfControls.Sample.csproj", "{49C488F6-E742-4BDF-9056-DA4B7C7D44DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,46 +13,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F3A126CB-135F-4FA6-BCD8-2FB4A96AE8F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3A126CB-135F-4FA6-BCD8-2FB4A96AE8F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3A126CB-135F-4FA6-BCD8-2FB4A96AE8F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3A126CB-135F-4FA6-BCD8-2FB4A96AE8F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DAA97F3C-0D19-4FA7-8515-132DB9628EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAA97F3C-0D19-4FA7-8515-132DB9628EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAA97F3C-0D19-4FA7-8515-132DB9628EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAA97F3C-0D19-4FA7-8515-132DB9628EEC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E018289F-9344-41AA-BAD2-60833351E9F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E018289F-9344-41AA-BAD2-60833351E9F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E018289F-9344-41AA-BAD2-60833351E9F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E018289F-9344-41AA-BAD2-60833351E9F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC3E3DE9-F6A4-406A-88A3-3FE20B4E2ED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC3E3DE9-F6A4-406A-88A3-3FE20B4E2ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC3E3DE9-F6A4-406A-88A3-3FE20B4E2ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC3E3DE9-F6A4-406A-88A3-3FE20B4E2ED3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE1D53AF-11CD-4812-A9FA-5F97404126AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE1D53AF-11CD-4812-A9FA-5F97404126AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE1D53AF-11CD-4812-A9FA-5F97404126AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE1D53AF-11CD-4812-A9FA-5F97404126AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AFD9D356-E308-4394-B379-CAFCFBE23F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFD9D356-E308-4394-B379-CAFCFBE23F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFD9D356-E308-4394-B379-CAFCFBE23F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFD9D356-E308-4394-B379-CAFCFBE23F92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{319ABF3D-377F-4F1D-9046-A6425D04FE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{319ABF3D-377F-4F1D-9046-A6425D04FE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{319ABF3D-377F-4F1D-9046-A6425D04FE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{319ABF3D-377F-4F1D-9046-A6425D04FE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7B8B751-7EC5-4820-A855-2225D8B7FCED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B8B751-7EC5-4820-A855-2225D8B7FCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B8B751-7EC5-4820-A855-2225D8B7FCED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B8B751-7EC5-4820-A855-2225D8B7FCED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C488F6-E742-4BDF-9056-DA4B7C7D44DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C488F6-E742-4BDF-9056-DA4B7C7D44DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C488F6-E742-4BDF-9056-DA4B7C7D44DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C488F6-E742-4BDF-9056-DA4B7C7D44DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F3A126CB-135F-4FA6-BCD8-2FB4A96AE8F3} = {D58356C2-64AC-4F7C-B6F0-4D17A7B0AB47}
-		{DAA97F3C-0D19-4FA7-8515-132DB9628EEC} = {46F9EDF5-7AE1-485F-8151-7DA91391D0C0}
-		{E018289F-9344-41AA-BAD2-60833351E9F9} = {46F9EDF5-7AE1-485F-8151-7DA91391D0C0}
-		{FC3E3DE9-F6A4-406A-88A3-3FE20B4E2ED3} = {6EA29543-7130-42ED-8FD5-1202360DC700}
-		{CE1D53AF-11CD-4812-A9FA-5F97404126AD} = {6EA29543-7130-42ED-8FD5-1202360DC700}
-		{AFD9D356-E308-4394-B379-CAFCFBE23F92} = {D58356C2-64AC-4F7C-B6F0-4D17A7B0AB47}
-		{319ABF3D-377F-4F1D-9046-A6425D04FE24} = {4A897783-F9CD-4ED1-8AA9-D8EEECC17F74}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D25D36A-2A44-4D0D-B77F-8466F7675A7A}

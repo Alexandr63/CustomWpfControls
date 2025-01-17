@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Common -->
+    <SolidColorBrush x:Key="BackgroundPrimary" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="BackgroundSecondary" Color="#F3F4F6" />
+    <SolidColorBrush x:Key="BackgroundPrimaryOpposite" Color="#000000" />
+
+    <SolidColorBrush x:Key="ForegroundPrimary" Color="#000000" Opacity="0.8" />
+    <SolidColorBrush x:Key="ForegroundSecondary" Color="#000000" Opacity="0.54" />
+    <SolidColorBrush x:Key="ForegroundHover" Color="#000000" Opacity="0.4" />
+
+    <SolidColorBrush x:Key="BorderPrimary" Color="#001024" Opacity="0.12" />
+    <SolidColorBrush x:Key="BorderSecondary" Color="#C7CBCF" />
+
+    <SolidColorBrush x:Key="PrimaryElement" Color="#FFDD2D" />
+    <SolidColorBrush x:Key="PrimaryElementHover" Color="#FCC521" />
+    <SolidColorBrush x:Key="PrimaryElementPressed" Color="#FAB619" />
+    <SolidColorBrush x:Key="PrimaryElementForeground" Color="#332C09" />
+
+    <SolidColorBrush x:Key="SecondaryElement" Color="#244A7F" Opacity="0.11" />
+    <SolidColorBrush x:Key="SecondaryElementHover" Color="#244A7F" Opacity="0.13" />
+    <SolidColorBrush x:Key="SecondaryElementPressed" Color="#2C4577" Opacity="0.16" />
+
+    <!-- Slider -->
+    <SolidColorBrush x:Key="SliderThumbColor">#D3D4D5</SolidColorBrush>
+    <Color x:Key="SliderThumbHoverColor">#333333</Color>
+    <Color x:Key="SliderThumbPressedColor">#999999</Color>
+
+    <!--DateTimePicker -->
+    <SolidColorBrush x:Key="DateTimePanelBackground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="CalendarBackground" Color="#F3F4F6" />
+    <SolidColorBrush x:Key="CalendarSelectedBackground" Color="#3366CC" />
+    <Color x:Key="CalendarDisabledColor">#000000</Color>
+    <Color x:Key="CalendarTodayBackgroundColor">#7290CC</Color>
+    <Color x:Key="CalendarSelectedBackgroundColor">#3366CC</Color>
+    <Color x:Key="CalendarForegroundColor">#000000</Color>
+</ResourceDictionary>
