@@ -132,12 +132,12 @@
                                                     Style="{DynamicResource FlatButton}"
                                                     Content="Отмена"/>
 
-                                            <customWpfControls:RoundedButton Grid.Column="2"
-                                                                             x:Name="PART_SaveButton"
-                                                                             Width="45"
-                                                                             Height="32"
-                                                                             Style="{DynamicResource YellowRoundedButton}"
-                                                                             Content="Ок"/>
+                                            <Button Grid.Column="2"
+                                                    x:Name="PART_SaveButton"
+                                                    Width="45"
+                                                    Height="32"
+                                                    Style="{DynamicResource YellowRoundedButton}"
+                                                    Content="Ок"/>
                                         </Grid>
                                     </Grid>
 

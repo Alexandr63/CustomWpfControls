@@ -8,7 +8,6 @@
         <ResourceDictionary Source="../Calendar.xaml"/>
         <ResourceDictionary Source="../ComboBox.xaml"/>
         <ResourceDictionary Source="../DateTimePicker.xaml"/>
-        <ResourceDictionary Source="../RoundedButton.xaml"/>
         <ResourceDictionary Source="../ScrollViewer.xaml"/>
         <ResourceDictionary Source="../TabControl.xaml"/>
         <ResourceDictionary Source="../TimePicker.xaml"/>

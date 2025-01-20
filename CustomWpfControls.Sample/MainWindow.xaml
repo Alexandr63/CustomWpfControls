@@ -31,77 +31,106 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <customWpfControls:RoundedButton Grid.Row="1"
-                                                         Grid.Column="1"
-                                                         Focusable="True"
-                                                         Margin="5"
-                                                         Style="{DynamicResource YellowRoundedButton}"
-                                                         Width="180"
-                                                         Height="32"
-                                                         Content="Rounded button (focusable)"/>
+                        <Button Grid.Row="1"
+                                Grid.Column="1"
+                                Focusable="True"
+                                Margin="5"
+                                Style="{DynamicResource YellowRoundedButton}"
+                                Width="180"
+                                Height="32"
+                                Content="Rounded button (focusable)"/>
 
-                        <customWpfControls:RoundedButton Grid.Row="2"
-                                                         Grid.Column="1"
-                                                         Margin="5"
-                                                         Style="{DynamicResource YellowRoundedButton}"
-                                                         Width="180"
-                                                         Height="32"
-                                                         Content="Rounded button"/>
+                        <Button Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="5"
+                                Style="{DynamicResource YellowRoundedButton}"
+                                Width="180"
+                                Height="32"
+                                Content="Rounded button"/>
 
-                        <customWpfControls:RoundedButton Grid.Row="3"
-                                                         Grid.Column="1"
-                                                         IsEnabled="False"
-                                                         Margin="5"
-                                                         Style="{DynamicResource YellowRoundedButton}"
-                                                         Width="180"
-                                                         Height="32"
-                                                         Content="Rounded button (disable)" />
+                        <Button Grid.Row="3"
+                                Grid.Column="1"
+                                IsEnabled="False"
+                                Margin="5"
+                                Style="{DynamicResource YellowRoundedButton}"
+                                Width="180"
+                                Height="32"
+                                Content="Rounded button (disable)" />
 
-                        <customWpfControls:RoundedButton Grid.Row="1"
-                                                         Grid.Column="2"
-                                                         Focusable="True"
-                                                         Margin="5"
-                                                         Style="{DynamicResource GrayRoundedButton}"
-                                                         Width="180"
-                                                         Height="32"
-                                                         Content="Rounded button (focusable)" />
+                        <Button Grid.Row="1"
+                                Grid.Column="2"
+                                Focusable="True"
+                                Margin="5"
+                                Style="{DynamicResource GrayRoundedButton}"
+                                Width="180"
+                                Height="32"
+                                Content="Rounded button (focusable)" />
 
-                        <customWpfControls:RoundedButton Grid.Row="2"
-                                                         Grid.Column="2"
-                                                         Margin="5"
-                                                         Style="{DynamicResource GrayRoundedButton}"
-                                                         Width="180"
-                                                         Height="32"
-                                                         Content="Rounded button" />
+                        <Button Grid.Row="2"
+                                Grid.Column="2"
+                                Margin="5"
+                                Style="{DynamicResource GrayRoundedButton}"
+                                Width="180"
+                                Height="32"
+                                Content="Rounded button" />
 
-                        <customWpfControls:RoundedButton Grid.Row="3"
-                                                         Grid.Column="2"
-                                                         IsEnabled="False"
-                                                         Margin="5"
-                                                         Style="{DynamicResource GrayRoundedButton}"
-                                                         Width="180"
-                                                         Height="32"
-                                                         Content="Rounded button (disable)" />
+                        <Button Grid.Row="3"
+                                Grid.Column="2"
+                                IsEnabled="False"
+                                Margin="5"
+                                Style="{DynamicResource GrayRoundedButton}"
+                                Width="180"
+                                Height="32"
+                                Content="Rounded button (disable)" />
 
-                        <customWpfControls:RoundedButton Grid.Row="1"
-                                                         Grid.Column="3"
-                                                         Focusable="True"
-                                                         Margin="5"
-                                                         Style="{DynamicResource ToolGrayRoundButton}"
-                                                         Content="F" />
+                        <Button Grid.Row="1"
+                                Grid.Column="3"
+                                Focusable="True"
+                                Margin="5"
+                                Style="{DynamicResource ToolGrayRoundButton}"
+                                Content="F" />
 
-                        <customWpfControls:RoundedButton Grid.Row="2"
-                                                         Grid.Column="3"
-                                                         Margin="5"
-                                                         Style="{DynamicResource ToolGrayRoundButton}"
-                                                         Content="B" />
+                        <Button Grid.Row="2"
+                                Grid.Column="3"
+                                Margin="5"
+                                Style="{DynamicResource ToolGrayRoundButton}"
+                                Content="B" />
 
-                        <customWpfControls:RoundedButton Grid.Row="3"
-                                                         Grid.Column="3"
-                                                         IsEnabled="False"
-                                                         Margin="5"
-                                                         Style="{DynamicResource ToolGrayRoundButton}"
-                                                         Content="D" />
+                        <Button Grid.Row="3"
+                                Grid.Column="3"
+                                IsEnabled="False"
+                                Margin="5"
+                                Style="{DynamicResource ToolGrayRoundButton}"
+                                Content="D" />
+
+                        <Button Grid.Row="1"
+                                Grid.Column="4"
+                                Focusable="True"
+                                customWpfControls:RoundedButton.CornerRadius="16"
+                                Margin="5"
+                                Style="{DynamicResource GrayRoundedButton}"
+                                Width="180"
+                                Height="32"
+                                Content="Rounded button (focusable)" />
+
+                        <Button Grid.Row="2"
+                                Grid.Column="4"
+                                customWpfControls:RoundedButton.CornerRadius="0 5 10 15"
+                                Margin="5"
+                                Style="{DynamicResource GrayRoundedButton}"
+                                Width="180"
+                                Height="32"
+                                Content="Rounded button" />
+
+                        <Button Grid.Row="3"
+                                Grid.Column="4"
+                                IsEnabled="False"
+                                customWpfControls:RoundedButton.CornerRadius="3"
+                                Margin="5"
+                                Style="{DynamicResource GrayRoundedButton}"
+                                Width="180"
+                                Height="32"
+                                Content="Rounded button (disable)" />
                     </Grid>
                 </TabItem.Content>
             </TabItem>
