@@ -300,6 +300,55 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
+                    <TextBlock>StretchWrapPanel</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <Grid Background="{DynamicResource BackgroundPrimary}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Text="StretchWrapPanel" FontSize="16"/>
+                            <customWpfControls:StretchWrapPanel Grid.Row="1" 
+                                                                Margin="5" 
+                                                                Background="{DynamicResource BackgroundSecondary}">
+                                <Button Margin="5" Width="100" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 1</Button>
+                                <Button Margin="5" Width="150" Height="42" Style="{DynamicResource YellowRoundedButton}">Button 2</Button>
+                                <Button Margin="5" Width="100" Height="52" Style="{DynamicResource YellowRoundedButton}">Button 3</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 4</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 5</Button>
+                                <Button Margin="5" Width="150" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 6</Button>
+                                <Button Margin="5" Width="150" Height="42" Style="{DynamicResource YellowRoundedButton}">Button 7</Button>
+                                <Button Margin="5" Width="100" Height="52" Style="{DynamicResource YellowRoundedButton}">Button 8</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 9</Button>
+                            </customWpfControls:StretchWrapPanel>
+
+                            <TextBlock Grid.Row="3" Text="WrapPanel" FontSize="16"/>
+                            <WrapPanel Grid.Row="4"
+                                       Margin="5"
+                                       Background="{DynamicResource BackgroundSecondary}"
+                                       HorizontalAlignment="Stretch">
+                                <Button Margin="5" Width="100" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 1</Button>
+                                <Button Margin="5" Width="150" Height="42" Style="{DynamicResource YellowRoundedButton}">Button 2</Button>
+                                <Button Margin="5" Width="100" Height="52" Style="{DynamicResource YellowRoundedButton}">Button 3</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 4</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 5</Button>
+                                <Button Margin="5" Width="150" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 6</Button>
+                                <Button Margin="5" Width="150" Height="42" Style="{DynamicResource YellowRoundedButton}">Button 7</Button>
+                                <Button Margin="5" Width="100" Height="52" Style="{DynamicResource YellowRoundedButton}">Button 8</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 9</Button>
+                            </WrapPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
                     <TextBlock>Theme</TextBlock>
                 </TabItem.Header>
                 <TabItem.Content>
