@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using CustomWpfControls.Sample.ViewModels;
 
-namespace CustomWpfControls.Sample
+namespace CustomWpfControls.Sample.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

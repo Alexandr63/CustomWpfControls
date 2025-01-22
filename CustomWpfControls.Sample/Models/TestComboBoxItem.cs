@@ -1,4 +1,4 @@
-﻿namespace CustomWpfControls.Sample
+﻿namespace CustomWpfControls.Sample.Models
 {
     public class TestComboBoxItem
     {

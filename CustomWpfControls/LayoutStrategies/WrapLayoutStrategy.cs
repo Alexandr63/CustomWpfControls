@@ -1,0 +1,226 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+
+namespace CustomWpfControls.LayoutStrategies
+{
+    /// <summary>
+    /// Стратегия отображения дочерних элементов с построчным заполнением.
+    /// </summary>
+    public class WrapLayoutStrategy : ILayoutStrategy
+    {
+        #region Private Fields
+
+        private readonly List<List<Size>> _rows = new List<List<Size>>();
+        private readonly List<double> _rowHeights = new List<double>();
+        private readonly List<DragItemLayoutInfo> _itemsLayoutInfos = new List<DragItemLayoutInfo>();
+
+        #endregion
+
+        #region ILayoutStrategy Implementation
+
+        public Size ResultSize => _rowHeights.Any() ? new Size(_rows.Select(row => row.Sum(item => item.Width)).Max(), _rowHeights.Sum()) : new Size(0, 0);
+
+        public void MeasureLayout(Size availableSize, List<Size> measures, bool isDragging)
+        {
+            if (!isDragging)
+            {
+                _rowHeights.Clear();
+            }
+            _rows.Clear();
+            _itemsLayoutInfos.Clear();
+
+            if (!measures.Any())
+            {
+                return;
+            }
+
+            double rowWidth = 0;
+            double rowHeight = 0;
+            List<Size> row = null;
+
+            int itemIndex = 0;
+            bool isNewRow = true;
+
+            int rowIndex = 0;
+            int columnIndex = 0;
+
+            // Заполняем строки
+            while (true)
+            {
+                // Прошлись по всем элементам
+                if (measures.Count <= itemIndex)
+                {
+                    break;
+                }
+
+                // Размер текущего элемента
+                Size itemSize = measures[itemIndex];
+
+                // Если это первый элемент в строке - добавляем его
+                if (isNewRow)
+                {
+                    isNewRow = false;
+
+                    row = new List<Size> { itemSize };
+                    _rows.Add(row);
+                    rowWidth = itemSize.Width;
+                    rowHeight = itemSize.Height;
+
+                    itemIndex++;
+
+                    _itemsLayoutInfos.Add(new DragItemLayoutInfo()
+                    {
+                        RowIndex = rowIndex,
+                        ColumnIndex = columnIndex,
+                        ColumnWidth = itemSize.Width
+                    });
+
+                    columnIndex++;
+                }
+                // Если это как минимум второй элемент в строке - проверяем
+                else
+                {
+                    // Новый элемент помещается в строку
+                    if (rowWidth + itemSize.Width < availableSize.Width)
+                    {
+                        // Добавляем элемент в строку
+                        row.Add(itemSize);
+                        rowWidth += itemSize.Width;
+                        if (rowHeight < itemSize.Height)
+                        {
+                            rowHeight = itemSize.Height;
+                        }
+
+                        itemIndex++;
+
+                        _itemsLayoutInfos.Add(new DragItemLayoutInfo()
+                        {
+                            RowIndex = rowIndex,
+                            ColumnIndex = columnIndex,
+                            ColumnWidth = itemSize.Width,
+                            RowHeight = rowHeight
+                        });
+
+                        columnIndex++;
+                    }
+                    // Новый элемент не помещается в строку
+                    else
+                    {
+                        // Он будет добавлен на следующую строку, завершаем текущую строку
+                        isNewRow = true;
+
+                        if (!isDragging)
+                        {
+                            _rowHeights.Add(rowHeight);
+                        }
+
+                        columnIndex = 0;
+                        rowIndex++;
+                    }
+                }
+            }
+
+            if (!isDragging)
+            {
+                _rowHeights.Add(rowHeight);
+            }
+
+            UpdateRowHeightsInLayoutInfos();
+        }
+        
+        public int GetIndex(Point position)
+        {
+            double y = 0d;
+            int rowIndex = 0;
+            while (true)
+            {
+                if (rowIndex < _rowHeights.Count)
+                {
+                    y += _rowHeights[rowIndex];
+
+                    if (position.Y < y)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    rowIndex--;
+                    break;
+                }
+
+                rowIndex++;
+            }
+
+            double x = 0d;
+            int elementIndex = 0;
+            while (true)
+            {
+                if (elementIndex < _rows[rowIndex].Count)
+                {
+                    // NOTE деление надо для более корректного отображения при переносе элементов в некоторых ситуациях.
+                    // Например, мы перетаскиваем элемент с индексом i из строки j, находящийся в конце строки на позицию i+1 в строке, находящийся в строке j+1.
+                    // При этом элемент, находящийся на позиции i+1, слишком широкий, и не может быть перенесен на предыдущую строку. В этом случаи возникает дергание элементов при перемещении мыши.
+                    x += _rows[rowIndex][elementIndex].Width / 2d;
+
+                    if (position.X < x)
+                    {
+                        break;
+                    }
+
+                    x += _rows[rowIndex][elementIndex].Width / 2d;
+
+                    if (position.X < x)
+                    {
+                        if (elementIndex + 1 < _rows[rowIndex].Count)
+                        {
+                            elementIndex++;
+                        }
+
+                        break;
+                    }
+                }
+                else
+                {
+                    elementIndex--;
+                    break;
+                }
+
+                elementIndex++;
+            }
+
+
+            int index = 0;
+            for (int i = 0; i < rowIndex; i++)
+            {
+                index += _rows[i].Count;
+            }
+            index += elementIndex;
+
+            return index;
+        }
+
+        public DragItemLayoutInfo GetLayoutInfo(int index)
+        {
+            return _itemsLayoutInfos[index];
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void UpdateRowHeightsInLayoutInfos()
+        {
+            foreach (DragItemLayoutInfo layoutInfo in _itemsLayoutInfos)
+            {
+                if (_rowHeights.Count > layoutInfo.RowIndex)
+                {
+                    layoutInfo.RowHeight = _rowHeights[layoutInfo.RowIndex];
+                }
+            }
+        }
+
+        #endregion
+    }
+}
