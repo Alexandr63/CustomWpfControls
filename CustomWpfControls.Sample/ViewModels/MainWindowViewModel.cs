@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Media;
 using CustomWpfControls.Sample.Helpers;
 using CustomWpfControls.Sample.Models;
 
@@ -10,12 +9,13 @@ namespace CustomWpfControls.Sample.ViewModels
     {
         #region Private Fields
 
+        private List<TestComboBoxItem> _testItems;
+
         private ExtendedObservableCollection<ImageModel> _images1;
         private ExtendedObservableCollection<ImageModel> _images2;
         private ExtendedObservableCollection<ImageModel> _images3;
         private ExtendedObservableCollection<ImageModel> _images4;
-
-        private List<TestComboBoxItem> _testItems;
+        private ExtendedObservableCollection<ImageModel> _images5;
 
         #endregion
 
@@ -97,6 +97,21 @@ namespace CustomWpfControls.Sample.ViewModels
                 new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/14.jpg"), Tag = "14" }
             };
 
+            Images5 = new ExtendedObservableCollection<ImageModel>()
+            {
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/0.jpg"), Tag = "0" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/1.jpg"), Tag = "1" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/2.jpg"), Tag = "2" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/3-4.jpg"), Tag = "3-4" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/5-6.jpg"), Tag = "5-6" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/7a.jpg"), Tag = "7a" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/8a.jpg"), Tag = "8a" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/9.jpg"), Tag = "9" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/10-11a.jpg"), Tag = "10-11a" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/12-13a.jpg"), Tag = "12-13a" },
+                new ImageModel { ImageSource = BitmapImageHelper.FileToBitmapImage("Images/14.jpg"), Tag = "14" }
+            };
+
             const double RESIZE_FACTOR = 20d;
             foreach (ImageModel image in Images1)
             {
@@ -118,11 +133,22 @@ namespace CustomWpfControls.Sample.ViewModels
                 image.Height /= RESIZE_FACTOR;
                 image.Width /= RESIZE_FACTOR;
             }
+            foreach (ImageModel image in Images5)
+            {
+                image.Height /= RESIZE_FACTOR;
+                image.Width /= RESIZE_FACTOR;
+            }
         }
 
         #endregion
 
         #region Public Properties
+
+        public List<TestComboBoxItem> TestItems
+        {
+            get => _testItems;
+            set => SetField(ref _testItems, value);
+        }
 
         public ExtendedObservableCollection<ImageModel> Images1
         {
@@ -148,10 +174,10 @@ namespace CustomWpfControls.Sample.ViewModels
             set => SetField(ref _images4, value);
         }
 
-        public List<TestComboBoxItem> TestItems
+        public ExtendedObservableCollection<ImageModel> Images5
         {
-            get => _testItems;
-            set => SetField(ref _testItems, value);
+            get => _images5;
+            set => SetField(ref _images5, value);
         }
 
         #endregion

@@ -429,7 +429,6 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
 
-
                         <ListBox Grid.Row="1"
                                  Grid.Column="2"
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -465,6 +464,51 @@
                                       Unchecked="ThemeToggleButtonCheckedEventHandler">
                             Theme switcher
                         </ToggleButton>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock>DragAnimatedPanel 2</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="50" Width="50"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="100" Height="100"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <GridSplitter Grid.Column="1" Grid.Row="2" Width="5" VerticalAlignment="Stretch"/>
+
+                        <GridSplitter Grid.Column="2" Grid.Row="1" Height="5" HorizontalAlignment="Stretch"/>
+
+                        <ListBox Grid.Column="2"
+                                 Grid.Row="2"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 ItemsSource="{Binding Images5, Mode=TwoWay}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <customWpfControls:DragAnimatedPanel FillType="Column"
+                                                                         VerticalAlignment="Top"
+                                                                         HorizontalAlignment="Left"
+                                                                         AnimationMilliseconds="200" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="10"
+                                            VerticalAlignment="Top">
+                                        <Image Source="{Binding ImageSource}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </Grid>
                 </TabItem.Content>
             </TabItem>

@@ -31,6 +31,6 @@ namespace CustomWpfControls.LayoutStrategies
         /// Возвращает информацию о расположении элемента по его индексу.
         /// </summary>
         /// <param name="index">Индекс элемента.</param>
-        DragItemLayoutInfo GetLayoutInfo(int index);
+        ItemLayoutInfo GetLayoutInfo(int index);
     }
 }

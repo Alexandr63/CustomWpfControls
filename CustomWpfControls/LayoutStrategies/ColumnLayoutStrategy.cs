@@ -68,9 +68,9 @@ namespace CustomWpfControls.LayoutStrategies
             return index;
         }
 
-        public DragItemLayoutInfo GetLayoutInfo(int index)
+        public ItemLayoutInfo GetLayoutInfo(int index)
         {
-            return new DragItemLayoutInfo()
+            return new ItemLayoutInfo()
             {
                 ColumnIndex = 0,
                 RowIndex = index,

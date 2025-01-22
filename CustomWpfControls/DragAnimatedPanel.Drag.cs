@@ -10,14 +10,9 @@ namespace CustomWpfControls
 {
     public partial class DragAnimatedPanel
     {
-        #region Constants
-
-        private DateTime _mouseDownTime;
-
-        #endregion
-
         #region Private Fields
 
+        private DateTime _mouseDownTime;
         private int _draggedIndex;
         private bool _firstScrollRequest = true;
         private ScrollViewer _scrollContainer;

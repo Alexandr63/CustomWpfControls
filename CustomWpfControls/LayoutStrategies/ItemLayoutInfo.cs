@@ -1,6 +1,6 @@
 ﻿namespace CustomWpfControls.LayoutStrategies
 {
-    public class DragItemLayoutInfo
+    public class ItemLayoutInfo
     {
         public int RowIndex { get; set; }
 

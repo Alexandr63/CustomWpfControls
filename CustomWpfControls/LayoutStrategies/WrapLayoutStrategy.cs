@@ -13,7 +13,7 @@ namespace CustomWpfControls.LayoutStrategies
 
         private readonly List<List<Size>> _rows = new List<List<Size>>();
         private readonly List<double> _rowHeights = new List<double>();
-        private readonly List<DragItemLayoutInfo> _itemsLayoutInfos = new List<DragItemLayoutInfo>();
+        private readonly List<ItemLayoutInfo> _itemsLayoutInfos = new List<ItemLayoutInfo>();
 
         #endregion
 
@@ -69,7 +69,7 @@ namespace CustomWpfControls.LayoutStrategies
 
                     itemIndex++;
 
-                    _itemsLayoutInfos.Add(new DragItemLayoutInfo()
+                    _itemsLayoutInfos.Add(new ItemLayoutInfo()
                     {
                         RowIndex = rowIndex,
                         ColumnIndex = columnIndex,
@@ -94,7 +94,7 @@ namespace CustomWpfControls.LayoutStrategies
 
                         itemIndex++;
 
-                        _itemsLayoutInfos.Add(new DragItemLayoutInfo()
+                        _itemsLayoutInfos.Add(new ItemLayoutInfo()
                         {
                             RowIndex = rowIndex,
                             ColumnIndex = columnIndex,
@@ -201,7 +201,7 @@ namespace CustomWpfControls.LayoutStrategies
             return index;
         }
 
-        public DragItemLayoutInfo GetLayoutInfo(int index)
+        public ItemLayoutInfo GetLayoutInfo(int index)
         {
             return _itemsLayoutInfos[index];
         }
@@ -212,7 +212,7 @@ namespace CustomWpfControls.LayoutStrategies
 
         private void UpdateRowHeightsInLayoutInfos()
         {
-            foreach (DragItemLayoutInfo layoutInfo in _itemsLayoutInfos)
+            foreach (ItemLayoutInfo layoutInfo in _itemsLayoutInfos)
             {
                 if (_rowHeights.Count > layoutInfo.RowIndex)
                 {

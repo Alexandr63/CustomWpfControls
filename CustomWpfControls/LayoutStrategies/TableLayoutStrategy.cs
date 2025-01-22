@@ -119,12 +119,12 @@ namespace CustomWpfControls.LayoutStrategies
             return index;
         }
 
-        public DragItemLayoutInfo GetLayoutInfo(int index)
+        public ItemLayoutInfo GetLayoutInfo(int index)
         {
             int columnIndex = index % _columnWidths.Count; 
             int rowIndex = index / _columnWidths.Count;
 
-            return new DragItemLayoutInfo()
+            return new ItemLayoutInfo()
             {
                 ColumnIndex = columnIndex,
                 RowIndex = rowIndex,

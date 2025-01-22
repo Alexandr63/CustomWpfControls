@@ -25,11 +25,12 @@ namespace CustomWpfControls
         public DragAnimatedPanel()
         {
             UpdateLayoutStrategy();
-            
-            AddHandler(Mouse.MouseMoveEvent, new MouseEventHandler(OnMouseMove), false);
-            AddHandler(MouseDownEvent, new MouseButtonEventHandler(OnMouseDown), true);
+
             MouseLeftButtonUp += OnMouseUp;
             LostMouseCapture += OnLostMouseCapture;
+            MouseMove += OnMouseMove;
+            
+            AddHandler(MouseDownEvent, new MouseButtonEventHandler(OnMouseDown), true);
         }
 
         #endregion
@@ -49,7 +50,7 @@ namespace CustomWpfControls
             typeof(FillType),
             typeof(DragAnimatedPanel),
             new FrameworkPropertyMetadata(FillType.Wrap, 
-                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure,
                 FillTypePropertyChangedCallback)
         );
 
@@ -170,12 +171,12 @@ namespace CustomWpfControls
                     AnimateTo(child, horizontalPosition, verticalPosition, IsLoaded ? AnimationMilliseconds : 0);
                 }
 
-                DragItemLayoutInfo currentLayoutInfo = _layoutStrategy.GetLayoutInfo(i);
+                ItemLayoutInfo currentLayoutInfo = _layoutStrategy.GetLayoutInfo(i);
                 horizontalPosition += currentLayoutInfo.ColumnWidth;
 
                 if (i + 1 < Children.Count)
                 {
-                    DragItemLayoutInfo nextLayoutInfo = _layoutStrategy.GetLayoutInfo(i + 1);
+                    ItemLayoutInfo nextLayoutInfo = _layoutStrategy.GetLayoutInfo(i + 1);
                     if (nextLayoutInfo.RowIndex > rowIndex)
                     {
                         rowIndex++;
