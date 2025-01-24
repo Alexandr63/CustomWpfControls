@@ -160,7 +160,8 @@ namespace CustomWpfControls
             list.Insert(targetIndex, dragged);
 
             // Получаем новый элемент UI после изменения коллекции
-            DraggedElement = Children[targetIndex]; 
+            DraggedElement = Children[targetIndex]; ; 
+
             FillNewDraggedChild(DraggedElement);
             _draggedIndex = targetIndex;
 

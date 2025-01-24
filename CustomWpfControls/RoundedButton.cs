@@ -2,7 +2,7 @@
 
 namespace CustomWpfControls
 {
-    public class RoundedButton
+    public static class RoundedButton
     {
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached(
             "CornerRadius",

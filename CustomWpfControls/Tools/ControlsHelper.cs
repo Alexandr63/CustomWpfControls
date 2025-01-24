@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,14 +19,6 @@ namespace CustomWpfControls.Tools
             while (parent != null && !matchFunction.Invoke(parent));
 
             return parent;
-        }
-
-        public static CustomWpfControls.DragAnimatedPanel GetDragAnimatedPanel(DependencyObject itemsControl)
-        {
-            ItemsPresenter itemsPresenter = GetVisualChild<ItemsPresenter>(itemsControl);
-            CustomWpfControls.DragAnimatedPanel itemsPanel = VisualTreeHelper.GetChild(itemsPresenter, 0) as CustomWpfControls.DragAnimatedPanel;
-
-            return itemsPanel;
         }
 
         public static T GetVisualChild<T>(DependencyObject parent) where T : Visual

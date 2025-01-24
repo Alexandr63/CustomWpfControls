@@ -454,6 +454,85 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
+                    <TextBlock>DragAnimatedPanel strings</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="290" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="290" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ListBox Grid.Row="0"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="2"
+                                 ItemsSource="{Binding Strings, Mode=TwoWay}"
+                                 VerticalContentAlignment="Top"
+                                 HorizontalContentAlignment="Left"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <customWpfControls:DragAnimatedPanel FillType="Row"
+                                                                         AnimationMilliseconds="200" 
+                                                                         VerticalAlignment="Top"
+                                                                         HorizontalAlignment="Left"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+
+                        <ListBox Grid.Row="0"
+                                 Grid.Column="0"
+                                 Grid.RowSpan="2"
+                                 ItemsSource="{Binding Strings, Mode=TwoWay}"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <customWpfControls:DragAnimatedPanel FillType="Column"
+                                                                         AnimationMilliseconds="200" 
+                                                                         VerticalAlignment="Top"
+                                                                         HorizontalAlignment="Left"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+
+                        <ListBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 ItemsSource="{Binding Strings, Mode=TwoWay}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <customWpfControls:DragAnimatedPanel FillType="Table"
+                                                                         AnimationMilliseconds="200"                                                                         
+                                                                         VerticalAlignment="Top"
+                                                                         HorizontalAlignment="Left"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+
+                        <ListBox Grid.Row="1"
+                                 Grid.Column="2"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 ItemsSource="{Binding Strings, Mode=TwoWay}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <customWpfControls:DragAnimatedPanel FillType="Wrap"
+                                                                         AnimationMilliseconds="200"                                                                         
+                                                                         VerticalAlignment="Top"
+                                                                         HorizontalAlignment="Left"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
                     <TextBlock>Theme</TextBlock>
                 </TabItem.Header>
                 <TabItem.Content>
@@ -467,7 +546,7 @@
                     </Grid>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem IsSelected="true">
                 <TabItem.Header>
                     <TextBlock>DragAnimatedPanel 2</TextBlock>
                 </TabItem.Header>
@@ -484,31 +563,62 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
+                        <Grid Grid.Column="0" Grid.Row="0" ColumnSpan="3">
+                            <Button Width="120"
+                                    Height="32"
+                                    HorizontalAlignment="Left"
+                                    Margin="5"
+                                    Style="{DynamicResource FlatButton}"
+                                    Click="ButtonBase_OnClick">
+                                Add new items
+                            </Button>
+                        </Grid>
+
                         <GridSplitter Grid.Column="1" Grid.Row="2" Width="5" VerticalAlignment="Stretch"/>
 
                         <GridSplitter Grid.Column="2" Grid.Row="1" Height="5" HorizontalAlignment="Stretch"/>
 
-                        <ListBox Grid.Column="2"
-                                 Grid.Row="2"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                 ItemsSource="{Binding Images5, Mode=TwoWay}">
-                            <ListBox.ItemsPanel>
+                        <customWpfControls:ExtendedListBox Grid.Column="2"
+                                                           Grid.Row="2"
+                                                           Background="DimGray"
+                                                           MinScale="0.3"
+                                                           MaxScale="5"
+                                                           HorizontalContentAlignment="Left"
+                                                           VerticalContentAlignment="Top"
+                                                           HorizontalAlignment="Stretch"
+                                                           VerticalAlignment="Stretch"
+                                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                           ItemContainerStyle="{StaticResource NoFocusListBoxItemStyle}"
+                                                           ItemsSource="{Binding Images5, Mode=TwoWay}">
+                            <customWpfControls:ExtendedListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <customWpfControls:DragAnimatedPanel FillType="Column"
+                                    <customWpfControls:DragAnimatedPanel FillType="Wrap"
                                                                          VerticalAlignment="Top"
                                                                          HorizontalAlignment="Left"
-                                                                         AnimationMilliseconds="200" />
+                                                                         AnimationMilliseconds="200"/>
                                 </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
+                            </customWpfControls:ExtendedListBox.ItemsPanel>
+                            <customWpfControls:ExtendedListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Border Margin="10"
-                                            VerticalAlignment="Top">
-                                        <Image Source="{Binding ImageSource}" />
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left">
+                                        <Image Source="{Binding ImageSource}"  
+                                               Width="{Binding Width}"
+                                               Height="{Binding Height}"
+                                               VerticalAlignment="Top"
+                                               HorizontalAlignment="Left">
+                                            <Image.LayoutTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform ScaleX="{Binding Scale, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type customWpfControls:ExtendedListBox}}}" 
+                                                                    ScaleY="{Binding Scale, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type customWpfControls:ExtendedListBox}}}"/>
+                                                </TransformGroup>
+                                            </Image.LayoutTransform>
+                                        </Image>
                                     </Border>
                                 </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                            </customWpfControls:ExtendedListBox.ItemTemplate>
+                        </customWpfControls:ExtendedListBox>
                     </Grid>
                 </TabItem.Content>
             </TabItem>
