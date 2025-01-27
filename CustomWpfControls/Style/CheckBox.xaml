@@ -1,0 +1,114 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- https://learn.microsoft.com/en-us/dotnet/desktop/wpf/controls/checkbox-styles-and-templates?view=netframeworkdesktop-4.8 -->
+
+    <Geometry x:Key="CheckMarkGeometry">F0 M16,16z M0,0z M13.6162,5.27016L6.54449,11.8963 2.67734,8.01904 3.03111,7.64706C3.59842,7.05056,4.54046,7.02271,5.14201,7.58465L6.63923,9.04146 11.1513,4.84384C11.7523,4.27806,12.6975,4.30419,13.2664,4.90232L13.6162,5.27016z</Geometry>
+
+    <Style TargetType="{x:Type CheckBox}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundPrimary}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="Border" 
+                                    Width="16" 
+                                    Height="16" 
+                                    CornerRadius="4" 
+                                    BorderThickness="0"
+                                    Background="{DynamicResource PrimaryElement}">
+                                <Grid>
+                                    <Path Visibility="Collapsed" Width="16" Height="16" x:Name="CheckMark" SnapsToDevicePixels="False" 
+                                          Fill="{DynamicResource BackgroundSecondary}"
+                                          Data="{StaticResource CheckMarkGeometry}"/>
+                                    <Path Visibility="Collapsed" Width="7" Height="7" x:Name="IndeterminateMark" SnapsToDevicePixels="False" 
+                                          StrokeThickness="2" 
+                                          Stroke="{DynamicResource ForegroundPrimary}"
+                                          Data="M 0 7 L 7 0"/>
+                                </Grid>
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed"/>
+                                <VisualState x:Name="Disabled"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="CheckMark">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked"/>
+                                <VisualState x:Name="Indeterminate">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="IndeterminateMark">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.56"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsChecked" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Foreground" Value="{DynamicResource ForegroundHover}"/>
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource PrimaryElementHover}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Foreground" Value="{DynamicResource ForegroundHover}"/>
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource SecondaryElementHover}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                                <Condition Property="IsChecked" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource PrimaryElement}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource SecondaryElement}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

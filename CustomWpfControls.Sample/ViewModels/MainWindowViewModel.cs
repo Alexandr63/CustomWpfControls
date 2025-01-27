@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CustomWpfControls.Sample.Helpers;
 using CustomWpfControls.Sample.Models;
 
@@ -19,7 +20,9 @@ namespace CustomWpfControls.Sample.ViewModels
         private ExtendedObservableCollection<ImageModel> _images4;
         private ExtendedObservableCollection<ImageModel> _images5;
 
-        private ExtendedObservableCollection<StringModel> _strings;
+        private IEnumerable<ListFillType> _fillTypes;
+        private ListFillType _selectedFillType = ListFillType.Table;
+        private bool _resizeEnable = true;
 
         #endregion
 
@@ -142,33 +145,7 @@ namespace CustomWpfControls.Sample.ViewModels
                 image.Width /= RESIZE_FACTOR;
             }
 
-            _strings = new ExtendedObservableCollection<StringModel>()
-            {
-                new StringModel("  using System;  "),
-                new StringModel("  ThrowHelper.ThrowArgumentOutOfRangeException();  "),
-                new StringModel("  using System.Collections;  "),
-                new StringModel("  using System.Collections.Generic;  "),
-                new StringModel("  using System.Linq;  "),
-                new StringModel("  using System.Windows;  "),
-                new StringModel("  using System.Windows.Controls;  "),
-                new StringModel("  using System.Windows.Input;  "),
-                new StringModel("  using WpfDragAnimatedControl.Tools;  "),
-                new StringModel("  namespace WpfDragAnimatedControl  "),
-                new StringModel("  /// <summary>  "),
-                new StringModel("  /// Interaction logic for DragAnimatedListBox.xaml  "),
-                new StringModel("  /// </summary>  "),
-                new StringModel("  public partial class DragAnimatedListBox : UserControl  "),
-                new StringModel("  #region Ctor  "),
-                new StringModel("  public DragAnimatedListBox()  "),
-                new StringModel("  InitializeComponent();  "),
-                new StringModel("  Loaded += LoadedEventHandler;  "),
-                new StringModel("  #endregion  "),
-                new StringModel("  #region Properties  "),
-                new StringModel("  /// <summary>  "),
-                new StringModel("  /// Тип заполнения контрола.  "),
-                new StringModel("  /// </summary>  "),
-                new StringModel("  public FillType FillType  "),
-            };
+            _fillTypes = Enum.GetValues(typeof(ListFillType)).Cast<ListFillType>();
         }
 
         #endregion
@@ -211,10 +188,22 @@ namespace CustomWpfControls.Sample.ViewModels
             set => SetField(ref _images5, value);
         }
 
-        public ExtendedObservableCollection<StringModel> Strings
+        public IEnumerable<ListFillType> FillTypes
         {
-            get => _strings;
-            set => SetField(ref _strings, value);
+            get => _fillTypes;
+            set => SetField(ref _fillTypes, value);
+        }
+
+        public ListFillType SelectedFillType
+        {
+            get => _selectedFillType;
+            set => SetField(ref _selectedFillType, value);
+        }
+
+        public bool ResizeEnable
+        {
+            get => _resizeEnable;
+            set => SetField(ref _resizeEnable, value);
         }
 
         #endregion

@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace CustomWpfControls.Tools
 {
+    /// <summary>
+    /// Хелпер для работы с WPF контролами.
+    /// </summary>
     public static class ControlsHelper
     {
         public static DependencyObject GetParent(DependencyObject obj, Func<DependencyObject, bool> matchFunction)

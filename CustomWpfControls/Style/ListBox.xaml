@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:customWpfControls="clr-namespace:CustomWpfControls">
 
     <Style x:Key="NoFocusListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Focusable" Value="False" />
@@ -26,5 +27,7 @@
         <!-- Отключает подсветку выбранного элемента -->
         <Setter Property="ItemContainerStyle" Value="{StaticResource NoFocusListBoxItemStyle}"/>
     </Style>
+
+    <Style TargetType="{x:Type customWpfControls:ExtendedListBox}" BasedOn="{StaticResource {x:Type ListBox}}"/>
 
 </ResourceDictionary>

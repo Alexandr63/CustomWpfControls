@@ -31,8 +31,10 @@
     <SolidColorBrush x:Key="DateTimePanelBackground" Color="#262626"/>
     <SolidColorBrush x:Key="CalendarBackground" Color="#373737" />
     <SolidColorBrush x:Key="CalendarSelectedBackground" Color="#3366CC" />
-    <Color x:Key="CalendarDisabledColor">#FFFFFF</Color>
+    <SolidColorBrush x:Key="CalendarDisabled" Color="#FFFFFF" Opacity="0.1" />
     <Color x:Key="CalendarTodayBackgroundColor">#7290CC</Color>
     <Color x:Key="CalendarSelectedBackgroundColor">#3366CC</Color>
     <Color x:Key="CalendarForegroundColor">#FFFFFF</Color>
+
+
 </ResourceDictionary>

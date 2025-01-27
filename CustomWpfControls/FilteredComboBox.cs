@@ -6,6 +6,9 @@ using System.Windows.Input;
 
 namespace CustomWpfControls
 {
+    /// <summary>
+    /// ComboBox с возможностью фильтрации содержимого.
+    /// </summary>
     public class FilteredComboBox : ComboBox
     {
         #region Constants

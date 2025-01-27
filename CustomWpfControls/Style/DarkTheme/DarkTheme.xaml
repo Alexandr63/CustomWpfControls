@@ -2,12 +2,12 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="DarkColors.xaml"/>
 
-        <ResourceDictionary Source="../Geometry.xaml"/>
-
         <ResourceDictionary Source="../Button.xaml"/>
         <ResourceDictionary Source="../Calendar.xaml"/>
+        <ResourceDictionary Source="../CheckBox.xaml"/>
         <ResourceDictionary Source="../ComboBox.xaml"/>
         <ResourceDictionary Source="../DateTimePicker.xaml"/>
+        <ResourceDictionary Source="../GridSplitter.xaml"/>
         <ResourceDictionary Source="../ListBox.xaml"/>
         <ResourceDictionary Source="../ScrollViewer.xaml"/>
         <ResourceDictionary Source="../TabControl.xaml"/>

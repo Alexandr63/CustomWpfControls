@@ -5,6 +5,9 @@ using System.Windows.Controls;
 
 namespace CustomWpfControls
 {
+    /// <summary>
+    /// Панель, отображающая содержимое как и WrapPanel, но растягивающая строки по ширине. 
+    /// </summary>
     public class StretchWrapPanel : Panel
     {
         #region Private Fields

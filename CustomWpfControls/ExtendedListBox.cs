@@ -155,7 +155,8 @@ namespace CustomWpfControls
 
         private static object MinScalePropertyCoerceValueCallback(DependencyObject d, object value)
         {
-            if ((double) value >= (double) d.GetValue(MaxScaleProperty))
+            double newValue = (double)value;
+            if (newValue >= (double) d.GetValue(MaxScaleProperty) || newValue <= 0)
             {
                 return (double) d.GetValue(MinScaleProperty);
             }
@@ -173,7 +174,7 @@ namespace CustomWpfControls
                 }
                 else
                 {
-                    ((ExtendedListBox)d).Scale = (double)d.GetValue(MinScaleProperty);
+                    ((ExtendedListBox)d).Scale = (double)d.GetValue(MaxScaleProperty);
                 }
             }
         }

@@ -6,6 +6,10 @@ using System.ComponentModel;
 
 namespace CustomWpfControls
 {
+    /// <summary>
+    /// ObservableCollection с поддержкой интерфейса INotifyPropertyChanged для элементов.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public sealed class ExtendedObservableCollection<T> : ObservableCollection<T>
         where T : class, INotifyPropertyChanged
     {

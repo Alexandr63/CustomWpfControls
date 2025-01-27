@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:customWpfControls="clr-namespace:CustomWpfControls">
 
+    <Geometry x:Key="UpArrow">F1 M31,15z M0,0z M0,15L31,15 15,0</Geometry>
+    <Geometry x:Key="DownArrow">F1 M31,15z M0,0z M0,0L31,0 15,15</Geometry>
+
     <Style x:Key="TimePicker_TextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type customWpfControls:TimePicker}}}"/>
         <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type customWpfControls:TimePicker}}}"/>
@@ -108,4 +111,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

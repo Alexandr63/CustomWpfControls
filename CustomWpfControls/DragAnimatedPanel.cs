@@ -10,6 +10,9 @@ using CustomWpfControls.LayoutStrategies;
 
 namespace CustomWpfControls
 {
+    /// <summary>
+    /// Панель с поддержкой переноса элементов.
+    /// </summary>
     public sealed partial class DragAnimatedPanel : Panel
     {
         #region Private Fields
