@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CustomWpfControls.Tools;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -99,29 +100,47 @@ namespace CustomWpfControls
             new UIPropertyMetadata(10d, MaxScalePropertyChangedCallback, MaxScalePropertyCoerceValueCallback));
 
         /// <summary>
-        /// Признак, что включено изменение масштаба.
+        /// Признак, что включено изменение масштаба с помощью мыши.
         /// </summary>
-        public bool ResizeEnable
+        public bool MouseResizeEnable
         {
-            get => (bool)GetValue(ResizeEnableProperty);
-            set => SetValue(ResizeEnableProperty, value);
+            get => (bool)GetValue(MouseResizeEnableProperty);
+            set => SetValue(MouseResizeEnableProperty, value);
         }
 
-        public static readonly DependencyProperty ResizeEnableProperty = DependencyProperty.Register(nameof(ResizeEnable),
+        public static readonly DependencyProperty MouseResizeEnableProperty = DependencyProperty.Register(nameof(MouseResizeEnable),
             typeof(bool),
             typeof(ExtendedListBox),
-            new UIPropertyMetadata(true, ResizeEnablePropertyChangedCallback));
+            new UIPropertyMetadata(true, MouseResizeEnablePropertyChangedCallback));
 
+        /// <summary>
+        /// Признак, что скрол колесиком мыши по умолчанию - по вертикали.
+        /// </summary>
+        public bool IsVerticalMouseWheelScrollDefault
+        {
+            get => (bool)GetValue(IsVerticalMouseWheelScrollDefaultProperty);
+            set => SetValue(IsVerticalMouseWheelScrollDefaultProperty, value);
+        }
+
+        public static readonly DependencyProperty IsVerticalMouseWheelScrollDefaultProperty = DependencyProperty.Register(nameof(IsVerticalMouseWheelScrollDefault),
+            typeof(bool),
+            typeof(ExtendedListBox),
+            new UIPropertyMetadata(true));
+        
         #endregion
 
         #region Private Methods
 
         private static object ScalePropertyCoerceValueCallback(DependencyObject d, object value)
         {
-            if ((double) value < (double) d.GetValue(MinScaleProperty) ||
-                (double) value > (double) d.GetValue(MaxScaleProperty))
+            ExtendedListBox control = (ExtendedListBox)d;
+            if (control.MouseResizeEnable)
             {
-                return DependencyProperty.UnsetValue;
+                if ((double) value < control.MinScale ||
+                    (double) value > control.MaxScale)
+                {
+                    return DependencyProperty.UnsetValue;
+                }
             }
 
             return value;
@@ -164,36 +183,94 @@ namespace CustomWpfControls
             return value;
         }
         
-        private static void ResizeEnablePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void MouseResizeEnablePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (!(bool) e.NewValue)
+            if ((bool) e.NewValue)
             {
-                if ((double) d.GetValue(MinScaleProperty) <= 1 && (double) d.GetValue(MaxScaleProperty) >= 1)
+                ExtendedListBox control = (ExtendedListBox) d;
+
+                if (control.Scale < control.MinScale)
                 {
-                    ((ExtendedListBox) d).Scale = 1;
+                    control.Scale = control.MinScale;
                 }
-                else
+                else if (control.Scale > control.MaxScale)
                 {
-                    ((ExtendedListBox)d).Scale = (double)d.GetValue(MaxScaleProperty);
+                    control.Scale = control.MaxScale;
                 }
             }
         }
 
         private void OnMouseWheelEventHandler(object sender, MouseWheelEventArgs e)
         {
-            if (!ResizeEnable || Keyboard.Modifiers != ModifierKeys.Control)
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                if (MouseResizeEnable)
+                {
+                    ProcessScale(e);
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                ProcessScroll(sender, e);
+                e.Handled = true;
+            }
+        }
+
+        private void ProcessScroll(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scrollViewer = ControlsHelper.GetVisualChild<ScrollViewer>(sender as ExtendedListBox);
+
+            if (scrollViewer == null)
             {
                 return;
             }
 
-            const double DELTA_DIVISOR = 500d;
+            if (IsVerticalMouseWheelScrollDefault)
+            {
+                if (Keyboard.Modifiers == ModifierKeys.Shift)
+                {
+                    scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - e.Delta);
+                }
+                else 
+                {
+                    scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta);
+                }
+            }
+            else
+            {
+                if (Keyboard.Modifiers == ModifierKeys.Shift)
+                {
+                    scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta);
+                }
+                else
+                {
+                    scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - e.Delta);
+                }
+            }
+
+            e.Handled = true;
+        }
+
+        private void ProcessScale(MouseWheelEventArgs e)
+        {
+            const double DELTA_DIVISOR = 1000d;
 
             double zoomScale = e.Delta / DELTA_DIVISOR;
             double newScaleFactor = Scale + zoomScale;
 
-            Scale = newScaleFactor;
-            
-            e.Handled = true;
+            if (newScaleFactor >= MinScale && newScaleFactor <= MaxScale)
+            {
+                Scale = newScaleFactor;
+            }
+            else if (newScaleFactor < MinScale)
+            {
+                Scale = MinScale;
+            }
+            else if (newScaleFactor > MaxScale)
+            {
+                Scale = MaxScale;
+            }
         }
 
         #endregion

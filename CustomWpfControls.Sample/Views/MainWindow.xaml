@@ -12,6 +12,7 @@
     <Window.Resources>
         <converters:ListFillTypeToVerticalScrollBarVisibilityConverter x:Key="ListFillTypeToVerticalScrollBarVisibilityConverter" />
         <converters:ListFillTypeToHorizontalScrollBarVisibilityConverter x:Key="ListFillTypeToHorizontalScrollBarVisibilityConverter" />
+        <converters:ListFillTypeToIsVerticalMouseWheelScrollDefaultConverter x:Key="ListFillTypeToIsVerticalMouseWheelScrollDefaultConverter" />
         <converters:ListFillTypeToFillTypeConverter x:Key="ListFillTypeToFillTypeConverter" />
         <converters:ListFillTypeToCanResizeConverter x:Key="ListFillTypeToCanResizeConverter" />
         <converters:ToResizeEnableMultiValueConverter x:Key="ToResizeEnableMultiValueConverter" />
@@ -357,7 +358,7 @@
                     </ScrollViewer>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem IsSelected="false">
                 <TabItem.Header>
                     <TextBlock>DragAnimatedPanel</TextBlock>
                 </TabItem.Header>
@@ -579,16 +580,17 @@
                                                            VerticalContentAlignment="Top"
                                                            HorizontalAlignment="Stretch"
                                                            VerticalAlignment="Stretch"
+                                                           IsVerticalMouseWheelScrollDefault="{Binding SelectedFillType, Converter={StaticResource ListFillTypeToIsVerticalMouseWheelScrollDefaultConverter}}"
                                                            ScrollViewer.HorizontalScrollBarVisibility="{Binding SelectedFillType, Converter={StaticResource ListFillTypeToHorizontalScrollBarVisibilityConverter}}"
                                                            ScrollViewer.VerticalScrollBarVisibility="{Binding SelectedFillType, Converter={StaticResource ListFillTypeToVerticalScrollBarVisibilityConverter}}"
                                                            ItemContainerStyle="{StaticResource NoFocusListBoxItemStyle}"
                                                            ItemsSource="{Binding Images5, Mode=TwoWay}">
-                            <customWpfControls:ExtendedListBox.ResizeEnable>
+                            <customWpfControls:ExtendedListBox.MouseResizeEnable>
                                 <MultiBinding Converter="{StaticResource ToResizeEnableMultiValueConverter}">
                                     <Binding Path="ResizeEnable" />
                                     <Binding Path="SelectedFillType" />
                                 </MultiBinding>
-                            </customWpfControls:ExtendedListBox.ResizeEnable>
+                            </customWpfControls:ExtendedListBox.MouseResizeEnable>
                             <customWpfControls:ExtendedListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <customWpfControls:DragAnimatedPanel FillType="{Binding SelectedFillType, Converter={StaticResource ListFillTypeToFillTypeConverter}}"
