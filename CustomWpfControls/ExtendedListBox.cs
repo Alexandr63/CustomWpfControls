@@ -121,7 +121,7 @@ namespace CustomWpfControls
             if ((double) value < (double) d.GetValue(MinScaleProperty) ||
                 (double) value > (double) d.GetValue(MaxScaleProperty))
             {
-                return (double) d.GetValue(MinScaleProperty);
+                return DependencyProperty.UnsetValue;
             }
 
             return value;
@@ -191,11 +191,8 @@ namespace CustomWpfControls
             double zoomScale = e.Delta / DELTA_DIVISOR;
             double newScaleFactor = Scale + zoomScale;
 
-            if (newScaleFactor >= MinScale && newScaleFactor <= MaxScale)
-            {
-                Scale = newScaleFactor;
-            }
-
+            Scale = newScaleFactor;
+            
             e.Handled = true;
         }
 

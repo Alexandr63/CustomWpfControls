@@ -85,7 +85,7 @@
                                 <Viewbox Stretch="Fill">
                                     <Canvas Width="30" Height="30">
                                         <Path Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
-                                              Data="{DynamicResource UpArrow}"/>
+                                              Data="{StaticResource UpArrow}"/>
                                     </Canvas>
                                 </Viewbox>
                             </Button>
@@ -101,7 +101,7 @@
                                 <Viewbox Stretch="Fill">
                                     <Canvas Width="30" Height="30">
                                         <Path Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
-                                              Data="{DynamicResource DownArrow}"/>
+                                              Data="{StaticResource DownArrow}"/>
                                     </Canvas>
                                 </Viewbox>
                             </Button>

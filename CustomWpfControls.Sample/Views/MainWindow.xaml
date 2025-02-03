@@ -10,12 +10,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
+        <converters:ListFillTypeToVerticalScrollBarVisibilityConverter x:Key="ListFillTypeToVerticalScrollBarVisibilityConverter" />
+        <converters:ListFillTypeToHorizontalScrollBarVisibilityConverter x:Key="ListFillTypeToHorizontalScrollBarVisibilityConverter" />
         <converters:ListFillTypeToFillTypeConverter x:Key="ListFillTypeToFillTypeConverter" />
         <converters:ListFillTypeToCanResizeConverter x:Key="ListFillTypeToCanResizeConverter" />
         <converters:ToResizeEnableMultiValueConverter x:Key="ToResizeEnableMultiValueConverter" />
         <converters:ToDoubleMultiValueConverter x:Key="ToDoubleMultiValueConverter" />
-        <converters:ListFillTypeToVerticalScrollBarVisibilityConverter x:Key="ListFillTypeToVerticalScrollBarVisibilityConverter" />
-        <converters:ListFillTypeToHorizontalScrollBarVisibilityConverter x:Key="ListFillTypeToHorizontalScrollBarVisibilityConverter" />
     </Window.Resources>
     <Grid>
         <TabControl>
@@ -45,7 +45,7 @@
                                 Grid.Column="1"
                                 Focusable="True"
                                 Margin="5"
-                                Style="{DynamicResource YellowRoundedButton}"
+                                Style="{StaticResource YellowRoundedButton}"
                                 Width="180"
                                 Height="32"
                                 Content="Rounded button (focusable)"/>
@@ -53,7 +53,7 @@
                         <Button Grid.Row="2"
                                 Grid.Column="1"
                                 Margin="5"
-                                Style="{DynamicResource YellowRoundedButton}"
+                                Style="{StaticResource YellowRoundedButton}"
                                 Width="180"
                                 Height="32"
                                 Content="Rounded button"/>
@@ -62,7 +62,7 @@
                                 Grid.Column="1"
                                 IsEnabled="False"
                                 Margin="5"
-                                Style="{DynamicResource YellowRoundedButton}"
+                                Style="{StaticResource YellowRoundedButton}"
                                 Width="180"
                                 Height="32"
                                 Content="Rounded button (disable)" />
@@ -71,7 +71,7 @@
                                 Grid.Column="2"
                                 Focusable="True"
                                 Margin="5"
-                                Style="{DynamicResource GrayRoundedButton}"
+                                Style="{StaticResource GrayRoundedButton}"
                                 Width="180"
                                 Height="32"
                                 Content="Rounded button (focusable)" />
@@ -79,7 +79,7 @@
                         <Button Grid.Row="2"
                                 Grid.Column="2"
                                 Margin="5"
-                                Style="{DynamicResource GrayRoundedButton}"
+                                Style="{StaticResource GrayRoundedButton}"
                                 Width="180"
                                 Height="32"
                                 Content="Rounded button" />
@@ -88,7 +88,7 @@
                                 Grid.Column="2"
                                 IsEnabled="False"
                                 Margin="5"
-                                Style="{DynamicResource GrayRoundedButton}"
+                                Style="{StaticResource GrayRoundedButton}"
                                 Width="180"
                                 Height="32"
                                 Content="Rounded button (disable)" />
@@ -97,20 +97,20 @@
                                 Grid.Column="3"
                                 Focusable="True"
                                 Margin="5"
-                                Style="{DynamicResource ToolGrayRoundButton}"
+                                Style="{StaticResource ToolGrayRoundButton}"
                                 Content="F" />
 
                         <Button Grid.Row="2"
                                 Grid.Column="3"
                                 Margin="5"
-                                Style="{DynamicResource ToolGrayRoundButton}"
+                                Style="{StaticResource ToolGrayRoundButton}"
                                 Content="B" />
 
                         <Button Grid.Row="3"
                                 Grid.Column="3"
                                 IsEnabled="False"
                                 Margin="5"
-                                Style="{DynamicResource ToolGrayRoundButton}"
+                                Style="{StaticResource ToolGrayRoundButton}"
                                 Content="D" />
 
                         <Button Grid.Row="1"
@@ -118,7 +118,7 @@
                                 Focusable="True"
                                 customWpfControls:RoundedButton.CornerRadius="16"
                                 Margin="5"
-                                Style="{DynamicResource GrayRoundedButton}"
+                                Style="{StaticResource GrayRoundedButton}"
                                 Width="180"
                                 Height="32"
                                 Content="Rounded button (focusable)" />
@@ -127,7 +127,7 @@
                                 Grid.Column="4"
                                 customWpfControls:RoundedButton.CornerRadius="0 5 10 15"
                                 Margin="5"
-                                Style="{DynamicResource GrayRoundedButton}"
+                                Style="{StaticResource GrayRoundedButton}"
                                 Width="180"
                                 Height="32"
                                 Content="Rounded button" />
@@ -137,7 +137,7 @@
                                 IsEnabled="False"
                                 customWpfControls:RoundedButton.CornerRadius="3"
                                 Margin="5"
-                                Style="{DynamicResource GrayRoundedButton}"
+                                Style="{StaticResource GrayRoundedButton}"
                                 Width="180"
                                 Height="32"
                                 Content="Rounded button (disable)" />
@@ -169,13 +169,13 @@
                                       Grid.Column="1"
                                       IsChecked="True"
                                       Margin="5"
-                                      Style="{DynamicResource RoundedToggleButton}"
+                                      Style="{StaticResource RoundedToggleButton}"
                                       Content="T1"/>
 
                         <ToggleButton Grid.Row="2"
                                       Grid.Column="1"
                                       Margin="5"
-                                      Style="{DynamicResource RoundedToggleButton}"
+                                      Style="{StaticResource RoundedToggleButton}"
                                       Content="T2"/>
 
                         <ToggleButton Grid.Row="3"
@@ -183,7 +183,7 @@
                                       IsChecked="True"
                                       IsEnabled="False"
                                       Margin="5"
-                                      Style="{DynamicResource RoundedToggleButton}"
+                                      Style="{StaticResource RoundedToggleButton}"
                                       Content="TCD"/>
 
 
@@ -191,7 +191,7 @@
                                       Grid.Column="1"
                                       IsEnabled="False"
                                       Margin="5"
-                                      Style="{DynamicResource RoundedToggleButton}"
+                                      Style="{StaticResource RoundedToggleButton}"
                                       Content="TD"/>
 
                         <ToggleButton Grid.Row="1"
@@ -314,7 +314,7 @@
                 </TabItem.Header>
                 <TabItem.Content>
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <Grid Background="{DynamicResource BackgroundPrimary}">
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -327,15 +327,15 @@
                             <customWpfControls:StretchWrapPanel Grid.Row="1" 
                                                                 Margin="5" 
                                                                 Background="{DynamicResource BackgroundSecondary}">
-                                <Button Margin="5" Width="100" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 1</Button>
-                                <Button Margin="5" Width="150" Height="42" Style="{DynamicResource YellowRoundedButton}">Button 2</Button>
-                                <Button Margin="5" Width="100" Height="52" Style="{DynamicResource YellowRoundedButton}">Button 3</Button>
-                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 4</Button>
-                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 5</Button>
-                                <Button Margin="5" Width="150" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 6</Button>
-                                <Button Margin="5" Width="150" Height="42" Style="{DynamicResource YellowRoundedButton}">Button 7</Button>
-                                <Button Margin="5" Width="100" Height="52" Style="{DynamicResource YellowRoundedButton}">Button 8</Button>
-                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 9</Button>
+                                <Button Margin="5" Width="100" Height="32" Style="{StaticResource YellowRoundedButton}">Button 1</Button>
+                                <Button Margin="5" Width="150" Height="42" Style="{StaticResource YellowRoundedButton}">Button 2</Button>
+                                <Button Margin="5" Width="100" Height="52" Style="{StaticResource YellowRoundedButton}">Button 3</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{StaticResource YellowRoundedButton}">Button 4</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{StaticResource YellowRoundedButton}">Button 5</Button>
+                                <Button Margin="5" Width="150" Height="32" Style="{StaticResource YellowRoundedButton}">Button 6</Button>
+                                <Button Margin="5" Width="150" Height="42" Style="{StaticResource YellowRoundedButton}">Button 7</Button>
+                                <Button Margin="5" Width="100" Height="52" Style="{StaticResource YellowRoundedButton}">Button 8</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{StaticResource YellowRoundedButton}">Button 9</Button>
                             </customWpfControls:StretchWrapPanel>
 
                             <TextBlock Grid.Row="3" Text="WrapPanel" FontSize="16"/>
@@ -343,15 +343,15 @@
                                        Margin="5"
                                        Background="{DynamicResource BackgroundSecondary}"
                                        HorizontalAlignment="Stretch">
-                                <Button Margin="5" Width="100" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 1</Button>
-                                <Button Margin="5" Width="150" Height="42" Style="{DynamicResource YellowRoundedButton}">Button 2</Button>
-                                <Button Margin="5" Width="100" Height="52" Style="{DynamicResource YellowRoundedButton}">Button 3</Button>
-                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 4</Button>
-                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 5</Button>
-                                <Button Margin="5" Width="150" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 6</Button>
-                                <Button Margin="5" Width="150" Height="42" Style="{DynamicResource YellowRoundedButton}">Button 7</Button>
-                                <Button Margin="5" Width="100" Height="52" Style="{DynamicResource YellowRoundedButton}">Button 8</Button>
-                                <Button Margin="5" Width="200" Height="32" Style="{DynamicResource YellowRoundedButton}">Button 9</Button>
+                                <Button Margin="5" Width="100" Height="32" Style="{StaticResource YellowRoundedButton}">Button 1</Button>
+                                <Button Margin="5" Width="150" Height="42" Style="{StaticResource YellowRoundedButton}">Button 2</Button>
+                                <Button Margin="5" Width="100" Height="52" Style="{StaticResource YellowRoundedButton}">Button 3</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{StaticResource YellowRoundedButton}">Button 4</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{StaticResource YellowRoundedButton}">Button 5</Button>
+                                <Button Margin="5" Width="150" Height="32" Style="{StaticResource YellowRoundedButton}">Button 6</Button>
+                                <Button Margin="5" Width="150" Height="42" Style="{StaticResource YellowRoundedButton}">Button 7</Button>
+                                <Button Margin="5" Width="100" Height="52" Style="{StaticResource YellowRoundedButton}">Button 8</Button>
+                                <Button Margin="5" Width="200" Height="32" Style="{StaticResource YellowRoundedButton}">Button 9</Button>
                             </WrapPanel>
                         </Grid>
                     </ScrollViewer>
@@ -517,7 +517,7 @@
                                     Height="32"
                                     HorizontalAlignment="Left"
                                     Margin="10 0"
-                                    Style="{DynamicResource GrayRoundedButton}"
+                                    Style="{StaticResource GrayRoundedButton}"
                                     Click="AddNewItemsButtonClickEventHandler">
                                 Add new items
                             </Button>
