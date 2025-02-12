@@ -76,6 +76,9 @@ namespace CustomWpfControls
 
         #region Override Methods
 
+        /// <summary>
+        /// Определяем, сколько пространства желает занять каждый дочерний элемент.
+        /// </summary>
         protected override Size MeasureOverride(Size availableSize)
         {
             foreach (UIElement child in Children)
@@ -103,6 +106,9 @@ namespace CustomWpfControls
             return _calculatedSize;
         }
 
+        /// <summary>
+        /// Размещаем дочерние элементы в пределах доступного пространства.
+        /// </summary>
         protected override Size ArrangeOverride(Size finalSize)
         {
             // Сначала помещаем все элементы в точку (0;0), после чего анимация поместит их в нужное место

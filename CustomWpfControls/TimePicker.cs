@@ -62,7 +62,10 @@ namespace CustomWpfControls
         #endregion
 
         #region Public Methods
-
+        
+        /// <summary>
+        /// Получаем выполняем байндинг и подписываемся на событие PART элементов.
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

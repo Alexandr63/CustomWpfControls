@@ -112,6 +112,7 @@
                                    AllowsTransparency="True"
                                    Focusable="False"
                                    MinWidth="200"
+                                   MinHeight="40"
                                    PopupAnimation="Fade">
                                 <Grid x:Name="DropDown"
                                       SnapsToDevicePixels="True"
