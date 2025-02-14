@@ -36,8 +36,6 @@ namespace CustomWpfControls.Sample
 
             ThemeDictionary.Clear();
             ThemeDictionary.Source = themeSource;
-
         }
     }
-
 }

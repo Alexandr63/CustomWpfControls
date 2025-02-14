@@ -43,78 +43,77 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <VisualStateManager.VisualStateGroups>
-                        <VisualStateGroup x:Name="CheckStates">
-                            <VisualState x:Name="Checked">
-                                <Storyboard>
-                                    <DoubleAnimation Duration="0:0:0.1"
-                                                     To="20"
-                                                     AccelerationRatio="0.2"
-                                                     DecelerationRatio="0.7"
-                                                     Storyboard.TargetName="Switcher"
-                                                     Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)"/>
-                                </Storyboard>
-                            </VisualState>
-                            <VisualState x:Name="Unchecked">
-                                <Storyboard>
-                                    <DoubleAnimation Duration="0:0:0.1"
-                                                     To="0"
-                                                     AccelerationRatio="0.2"
-                                                     DecelerationRatio="0.7"
-                                                     Storyboard.TargetName="Switcher"
-                                                     Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)"/>
-                                </Storyboard>
-                            </VisualState>
-                            <VisualState x:Name="Indeterminate"/>
-                        </VisualStateGroup>
-                    </VisualStateManager.VisualStateGroups>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1"
+                                                         To="20"
+                                                         AccelerationRatio="0.2"
+                                                         DecelerationRatio="0.7"
+                                                         Storyboard.TargetName="Switcher"
+                                                         Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1"
+                                                         To="0"
+                                                         AccelerationRatio="0.2"
+                                                         DecelerationRatio="0.7"
+                                                         Storyboard.TargetName="Switcher"
+                                                         Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.X)"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
 
-                    <Border Grid.Column="0"
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="11" 
-                            Width="44"
-                            Height="22">
-                        <Canvas HorizontalAlignment="Left" 
-                                VerticalAlignment="Top">
-                            <Image Source="{StaticResource CheckIcon}"
-                                   Height="15"
-                                   Width="15"
-                                   Canvas.Left="6"
-                                   Canvas.Top="4"/>
+                        <Border Grid.Column="0"
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="11" 
+                                Width="44"
+                                Height="22">
+                            <Canvas HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top">
+                                <Image Source="{StaticResource CheckIcon}"
+                                       Height="15"
+                                       Width="15"
+                                       Canvas.Left="6"
+                                       Canvas.Top="4"/>
 
-                            <Image Source="{StaticResource UncheckIcon}"
-                                   Height="15"
-                                   Width="15"
-                                   Canvas.Left="25"
-                                   Canvas.Top="4"/>
+                                <Image Source="{StaticResource UncheckIcon}"
+                                       Height="15"
+                                       Width="15"
+                                       Canvas.Left="25"
+                                       Canvas.Top="4"/>
 
-                            <Ellipse x:Name="Switcher"
-                                     Width="14"
-                                     Height="14" 
-                                     Canvas.Left="5"
-                                     Canvas.Top="4"
-                                     Fill="{DynamicResource BackgroundPrimary}">
-                                <Ellipse.RenderTransform>
-                                    <TranslateTransform x:Name="SwitchTransform"/>
-                                </Ellipse.RenderTransform>
-                            </Ellipse>
-                        </Canvas>
-                    </Border>
+                                <Ellipse x:Name="Switcher"
+                                         Width="14"
+                                         Height="14" 
+                                         Canvas.Left="5"
+                                         Canvas.Top="4"
+                                         Fill="{DynamicResource BackgroundPrimary}">
+                                    <Ellipse.RenderTransform>
+                                        <TranslateTransform x:Name="SwitchTransform"/>
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                            </Canvas>
+                        </Border>
 
-                    <ContentPresenter Grid.Column="1" 
-                                      Margin="5 0 0 0"
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Center"/>
-                </Grid>
+                        <ContentPresenter Grid.Column="1" 
+                                          Margin="5 0 0 0"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
                 </ControlTemplate>
-
             </Setter.Value>
         </Setter>
         
