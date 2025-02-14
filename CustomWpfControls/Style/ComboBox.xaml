@@ -106,7 +106,7 @@
                                      Background="{TemplateBinding Background}"
                                      Visibility="Hidden"
                                      IsReadOnly="{TemplateBinding IsReadOnly}"/>
-                            <Popup x:Name="Popup"
+                            <Popup x:Name="PART_Popup"
                                    Placement="Bottom"
                                    IsOpen="{TemplateBinding IsDropDownOpen}"
                                    AllowsTransparency="True"
@@ -149,7 +149,7 @@
                         <Trigger Property="IsGrouping" Value="true">
                             <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
                         </Trigger>
-                        <Trigger SourceName="Popup" Property="AllowsTransparency" Value="true">
+                        <Trigger SourceName="PART_Popup" Property="AllowsTransparency" Value="true">
                             <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="8"/>
                             <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
                         </Trigger>
