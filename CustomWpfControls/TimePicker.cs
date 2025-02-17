@@ -12,7 +12,6 @@ namespace CustomWpfControls
     /// Контрол выбора времени
     /// </summary>
     [TemplatePart(Name = HOURS_TEXT_BOX_PART_NAME, Type = typeof(TextBox))]
-    [TemplatePart(Name = SLITTER_TEXT_BLOCK_PART_NAME, Type = typeof(TextBlock))]
     [TemplatePart(Name = MINUTES_TEXT_BOX_PART_NAME, Type = typeof(TextBox))]
     [TemplatePart(Name = UP_BUTTON_PART_NAME, Type = typeof(Button))]
     [TemplatePart(Name = DOWN_BUTTON_PART_NAME, Type = typeof(Button))]
@@ -21,7 +20,6 @@ namespace CustomWpfControls
         #region Constants
 
         public const string HOURS_TEXT_BOX_PART_NAME = "PART_HoursTextBox";
-        public const string SLITTER_TEXT_BLOCK_PART_NAME = "PART_SlitterTextBlock";
         public const string MINUTES_TEXT_BOX_PART_NAME = "PART_MinutesTextBox";
         public const string UP_BUTTON_PART_NAME = "PART_UpButton";
         public const string DOWN_BUTTON_PART_NAME = "PART_DownButton";

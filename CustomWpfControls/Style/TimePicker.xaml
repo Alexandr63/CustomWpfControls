@@ -60,7 +60,6 @@
                                  TabIndex="0"/>
 
                         <TextBlock Grid.Column="1"
-                                   x:Name="PART_SlitterTextBox"
                                    Style="{StaticResource TimePicker_SplitterTextBlock}"/>
 
                         <TextBox Grid.Column="2"
