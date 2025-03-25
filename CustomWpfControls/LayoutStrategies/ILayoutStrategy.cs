@@ -16,10 +16,10 @@ namespace CustomWpfControls.LayoutStrategies
         /// <summary>
         /// Вычислить размеры панели и расположение дочерних элементов.
         /// </summary>
-        /// <param name="availableSize">Доступный размер панели.</param>
+        /// <param name="availablePanelSize">Доступный размер панели.</param>
         /// <param name="sizes">Размеры дочерних элементов.</param>
         /// <param name="isDragging">Признак, что выполняется перенос элементов.</param>
-        void MeasureLayout(Size availableSize, List<Size> sizes, bool isDragging);
+        void MeasureLayout(Size availablePanelSize, List<Size> sizes, bool isDragging);
 
         /// <summary>
         /// Возвращает индекс дочернего элемента по указанным координатам.

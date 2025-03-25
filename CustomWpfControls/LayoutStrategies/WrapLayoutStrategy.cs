@@ -21,7 +21,7 @@ namespace CustomWpfControls.LayoutStrategies
 
         public Size ResultSize => _rowHeights.Any() ? new Size(_rows.Select(row => row.Sum(item => item.Width)).Max(), _rowHeights.Sum()) : new Size(0, 0);
 
-        public void MeasureLayout(Size availableSize, List<Size> measures, bool isDragging)
+        public void MeasureLayout(Size availablePanelSize, List<Size> measures, bool isDragging)
         {
             if (!isDragging)
             {
@@ -82,7 +82,7 @@ namespace CustomWpfControls.LayoutStrategies
                 else
                 {
                     // Новый элемент помещается в строку
-                    if (rowWidth + itemSize.Width < availableSize.Width)
+                    if (rowWidth + itemSize.Width < availablePanelSize.Width)
                     {
                         // Добавляем элемент в строку
                         row.Add(itemSize);

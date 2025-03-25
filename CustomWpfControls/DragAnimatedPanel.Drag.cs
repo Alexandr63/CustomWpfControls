@@ -170,13 +170,6 @@ namespace CustomWpfControls
 
         private void FillNewDraggedChild(UIElement child)
         {
-            if (!(child.RenderTransform is TransformGroup))
-            {
-                TransformGroup group = new TransformGroup();
-                child.RenderTransform = group;
-                group.Children.Add(new TranslateTransform());
-            }
-            
             MoveTo(child, _x, _y);
         }
 
@@ -186,8 +179,7 @@ namespace CustomWpfControls
             if (DraggedElement != null)
             {
                 DraggedElement = null;
-
-                InvalidateMeasure();
+                InvalidateArrange();
             }
         }
 

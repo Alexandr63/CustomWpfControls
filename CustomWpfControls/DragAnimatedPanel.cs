@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using CustomWpfControls.LayoutStrategies;
 
 namespace CustomWpfControls
@@ -104,30 +101,24 @@ namespace CustomWpfControls
 
             double horizontalPosition = 0;
             double verticalPosition = 0;
-
             int rowIndex = 0;
             ItemLayoutInfo currentLayoutInfo = _layoutStrategy.GetLayoutInfo(0);
+            
             for (int i = 0; i < Children.Count; i++)
             {
                 UIElement child = Children[i];
 
-                if (!(child.RenderTransform is TransformGroup))
-                {
-                    TransformGroup group = new TransformGroup();
-                    child.RenderTransform = group;
-                    group.Children.Add(new TranslateTransform());
-                }
-
-                // Сначала помещаем элемент в точку (0;0) и получаем его реальный размер. После этого можно применить трансформацию и перемещаем его в нужное место.
-                child.Arrange(new Rect(new Point(0, 0), child.DesiredSize));
-
+                // Размещаем элемент на панели в точке (0;0)
+                child.Arrange(new Rect(child.DesiredSize));
+                
+                // Инициализируем и применяем трансформацию для переноса его в нужное нам место.
+                // Трансформация с информацией о расположении объекта понадобится позже для работы Drag`n`Drop.
                 if (child != DraggedElement)
                 {
                     MoveTo(child, horizontalPosition, verticalPosition);
                 }
 
                 horizontalPosition += currentLayoutInfo.ColumnWidth;
-
                 if (i + 1 < Children.Count)
                 {
                     ItemLayoutInfo nextLayoutInfo = _layoutStrategy.GetLayoutInfo(i + 1);
@@ -172,28 +163,32 @@ namespace CustomWpfControls
             InvalidateMeasure();
         }
         
-        private void MoveTo(UIElement child, double x, double y)
+        private void MoveTo(UIElement element, double x, double y)
         {
-            TransformGroup group = (TransformGroup)child.RenderTransform;
-            TranslateTransform trans = (TranslateTransform)group.Children[0];
+            TranslateTransform trans = InitTransform(element);
             trans.X = x;
             trans.Y = y;
-            
-            // Альтернативный вариант с анимацией (более ресурсоемкий, начинает притормаживать на большом количестве объектов)
-            // trans.BeginAnimation(TranslateTransform.XProperty, MakeAnimation(x));
-            // trans.BeginAnimation(TranslateTransform.YProperty, MakeAnimation(y));
-        }
-        
-        private DoubleAnimation MakeAnimation(double to)
-        {
-            const double ANIMATION_DURATION = 200d;
-            return new DoubleAnimation(to, TimeSpan.FromMilliseconds(ANIMATION_DURATION))
-            {
-                AccelerationRatio = 0.2,
-                DecelerationRatio = 0.7
-            };
         }
 
+        private TranslateTransform InitTransform(UIElement element)
+        {
+            TranslateTransform trans;
+            if (!(element.RenderTransform is TransformGroup))
+            {
+                TransformGroup group = new TransformGroup();
+                element.RenderTransform = group;
+                trans = new TranslateTransform();
+                group.Children.Add(trans);
+            }
+            else
+            {
+                TransformGroup group = (TransformGroup)element.RenderTransform;
+                trans = (TranslateTransform)group.Children[0];
+            }
+
+            return trans;
+        }
+        
         private static void FillTypePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((DragAnimatedPanel)d).UpdateLayoutStrategy();

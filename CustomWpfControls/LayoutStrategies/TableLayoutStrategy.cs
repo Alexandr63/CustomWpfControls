@@ -21,7 +21,7 @@ namespace CustomWpfControls.LayoutStrategies
 
         public Size ResultSize => _columnWidths.Any() && _rowHeights.Any() ? new Size(_columnWidths.Sum(), _rowHeights.Sum()) : new Size(0, 0);
 
-        public void MeasureLayout(Size availableSize, List<Size> measures, bool isDragging)
+        public void MeasureLayout(Size availablePanelSize, List<Size> measures, bool isDragging)
         {
             if (!isDragging)
             {
@@ -38,7 +38,7 @@ namespace CustomWpfControls.LayoutStrategies
 
             if (!isDragging)
             {
-                columnsCount = GetColumnCount(availableSize, measures);
+                columnsCount = GetColumnCount(availablePanelSize, measures);
             }
 
             InitList(_columnWidths, columnsCount);
