@@ -112,7 +112,7 @@ namespace CustomWpfControls
                 _lastMousePosY = mousePos.Y;
                 _lastMouseMoveTime = e.Timestamp;
                 SwapElement(index);
-                AnimateTo(DraggedElement, _x, _y, 0);
+                MoveTo(DraggedElement, _x, _y);
             }
         }
 
@@ -172,22 +172,17 @@ namespace CustomWpfControls
         {
             if (!(child.RenderTransform is TransformGroup))
             {
-                child.RenderTransformOrigin = new Point(0.5, 0.5);
                 TransformGroup group = new TransformGroup();
                 child.RenderTransform = group;
                 group.Children.Add(new TranslateTransform());
             }
             
-            AnimateTo(child, _x, _y, 0);
+            MoveTo(child, _x, _y);
         }
 
         private void OnLostMouseCapture(object sender, MouseEventArgs e)
         {
-            FinishDrag();
-        }
-
-        private void FinishDrag()
-        {
+            // Finish drag element
             if (DraggedElement != null)
             {
                 DraggedElement = null;

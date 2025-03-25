@@ -382,8 +382,7 @@
                                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <customWpfControls:DragAnimatedPanel FillType="Row"
-                                                                         AnimationMilliseconds="200" />
+                                    <customWpfControls:DragAnimatedPanel FillType="Row" />
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                             <ListBox.ItemTemplate>
@@ -404,8 +403,7 @@
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <customWpfControls:DragAnimatedPanel FillType="Column"
-                                                                         AnimationMilliseconds="200" />
+                                    <customWpfControls:DragAnimatedPanel FillType="Column" />
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                             <ListBox.ItemTemplate>
@@ -425,8 +423,7 @@
                                  ItemsSource="{Binding Images3, Mode=TwoWay}">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <customWpfControls:DragAnimatedPanel FillType="Table"
-                                                                         AnimationMilliseconds="200" />
+                                    <customWpfControls:DragAnimatedPanel FillType="Table" />
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                             <ListBox.ItemTemplate>
@@ -446,8 +443,7 @@
                                  ItemsSource="{Binding Images4, Mode=TwoWay}">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <customWpfControls:DragAnimatedPanel FillType="Wrap"
-                                                                         AnimationMilliseconds="200" />
+                                    <customWpfControls:DragAnimatedPanel FillType="Wrap" />
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                             <ListBox.ItemTemplate>
@@ -595,8 +591,7 @@
                                 <ItemsPanelTemplate>
                                     <customWpfControls:DragAnimatedPanel FillType="{Binding SelectedFillType, Converter={StaticResource ListFillTypeToFillTypeConverter}}"
                                                                          VerticalAlignment="Top"
-                                                                         HorizontalAlignment="Left"
-                                                                         AnimationMilliseconds="200"/>
+                                                                         HorizontalAlignment="Left"/>
                                 </ItemsPanelTemplate>
                             </customWpfControls:ExtendedListBox.ItemsPanel>
                             <customWpfControls:ExtendedListBox.ItemTemplate>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -57,21 +58,6 @@ namespace CustomWpfControls
                 FillTypePropertyChangedCallback)
         );
 
-        /// <summary>
-        /// Время анимации перестроения документов при изменении размера панели и т.п.
-        /// </summary>
-        public int AnimationMilliseconds
-        {
-            get => (int)GetValue(AnimationMillisecondsProperty);
-            set => SetValue(AnimationMillisecondsProperty, value);
-        }
-
-        public static readonly DependencyProperty AnimationMillisecondsProperty = DependencyProperty.Register(nameof(AnimationMilliseconds),
-            typeof(int),
-            typeof(DragAnimatedPanel),
-            new UIPropertyMetadata(75)
-        );
-
         #endregion
 
         #region Override Methods
@@ -111,23 +97,50 @@ namespace CustomWpfControls
         /// </summary>
         protected override Size ArrangeOverride(Size finalSize)
         {
-            // Сначала помещаем все элементы в точку (0;0), после чего анимация поместит их в нужное место
-            foreach (UIElement child in InternalChildren)
+            if (Children.Count == 0)
             {
-                // Ставим TransformGroup в RenderTransform для использования нашей анимации
+                return _calculatedSize;
+            }
+
+            double horizontalPosition = 0;
+            double verticalPosition = 0;
+
+            int rowIndex = 0;
+            ItemLayoutInfo currentLayoutInfo = _layoutStrategy.GetLayoutInfo(0);
+            for (int i = 0; i < Children.Count; i++)
+            {
+                UIElement child = Children[i];
+
                 if (!(child.RenderTransform is TransformGroup))
                 {
-                    child.RenderTransformOrigin = new Point(0.5, 0.5);
                     TransformGroup group = new TransformGroup();
                     child.RenderTransform = group;
                     group.Children.Add(new TranslateTransform());
                 }
 
-                // Помещаем все элементы в точку (0;0)
+                // Сначала помещаем элемент в точку (0;0) и получаем его реальный размер. После этого можно применить трансформацию и перемещаем его в нужное место.
                 child.Arrange(new Rect(new Point(0, 0), child.DesiredSize));
-            }
 
-            AnimateAll();
+                if (child != DraggedElement)
+                {
+                    MoveTo(child, horizontalPosition, verticalPosition);
+                }
+
+                horizontalPosition += currentLayoutInfo.ColumnWidth;
+
+                if (i + 1 < Children.Count)
+                {
+                    ItemLayoutInfo nextLayoutInfo = _layoutStrategy.GetLayoutInfo(i + 1);
+                    if (nextLayoutInfo.RowIndex > rowIndex)
+                    {
+                        rowIndex++;
+                        horizontalPosition = 0;
+                        verticalPosition += currentLayoutInfo.RowHeight;
+                    }
+
+                    currentLayoutInfo = nextLayoutInfo;
+                }
+            }
 
             return _calculatedSize;
         }
@@ -159,55 +172,22 @@ namespace CustomWpfControls
             InvalidateMeasure();
         }
         
-        private void AnimateAll()
-        {
-            if (Children.Count == 0)
-            {
-                return;
-            }
-
-            double horizontalPosition = 0;
-            double verticalPosition = 0;
-
-            int rowIndex = 0;
-            for (int i = 0; i < Children.Count; i++)
-            {
-                UIElement child = Children[i];
-
-                // Отображаем перемещение всех элементов кроме того, которые перемещает пользователь
-                if (child != DraggedElement)
-                {
-                    AnimateTo(child, horizontalPosition, verticalPosition, IsLoaded ? AnimationMilliseconds : 0);
-                }
-
-                ItemLayoutInfo currentLayoutInfo = _layoutStrategy.GetLayoutInfo(i);
-                horizontalPosition += currentLayoutInfo.ColumnWidth;
-
-                if (i + 1 < Children.Count)
-                {
-                    ItemLayoutInfo nextLayoutInfo = _layoutStrategy.GetLayoutInfo(i + 1);
-                    if (nextLayoutInfo.RowIndex > rowIndex)
-                    {
-                        rowIndex++;
-                        horizontalPosition = 0;
-                        verticalPosition += currentLayoutInfo.RowHeight;
-                    }
-                }
-            }
-        }
-
-        private void AnimateTo(UIElement child, double x, double y, int duration)
+        private void MoveTo(UIElement child, double x, double y)
         {
             TransformGroup group = (TransformGroup)child.RenderTransform;
-            TranslateTransform trans = (TranslateTransform)group.Children.First((groupElement) => groupElement is TranslateTransform);
-
-            trans.BeginAnimation(TranslateTransform.XProperty, MakeAnimation(x, duration));
-            trans.BeginAnimation(TranslateTransform.YProperty, MakeAnimation(y, duration));
+            TranslateTransform trans = (TranslateTransform)group.Children[0];
+            trans.X = x;
+            trans.Y = y;
+            
+            // Альтернативный вариант с анимацией (более ресурсоемкий, начинает притормаживать на большом количестве объектов)
+            // trans.BeginAnimation(TranslateTransform.XProperty, MakeAnimation(x));
+            // trans.BeginAnimation(TranslateTransform.YProperty, MakeAnimation(y));
         }
-
-        private DoubleAnimation MakeAnimation(double to, int duration)
+        
+        private DoubleAnimation MakeAnimation(double to)
         {
-            return new DoubleAnimation(to, TimeSpan.FromMilliseconds(duration))
+            const double ANIMATION_DURATION = 200d;
+            return new DoubleAnimation(to, TimeSpan.FromMilliseconds(ANIMATION_DURATION))
             {
                 AccelerationRatio = 0.2,
                 DecelerationRatio = 0.7
