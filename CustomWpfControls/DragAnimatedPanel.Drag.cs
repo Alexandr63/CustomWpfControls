@@ -35,6 +35,11 @@ namespace CustomWpfControls
 
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
+            if (!IsDragAndDropEnable)
+            {
+                return;
+            }
+
             if (e.LeftButton == MouseButtonState.Pressed && DraggedElement == null && !IsMouseCaptured)
             {
                 // Защита от случайного перехода в режим перетаскивания при быстром 'прокликивании' элементов.

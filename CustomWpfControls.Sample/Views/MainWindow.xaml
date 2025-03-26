@@ -485,6 +485,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
@@ -509,7 +510,14 @@
                                 Resize enable
                             </CheckBox>
 
-                            <Button Grid.Column="2"
+                            <CheckBox Grid.Column="2"
+                                      Margin="10 0"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding IsDragAndDropEnable, Mode=TwoWay}">
+                                Drag'n'Drop enable
+                            </CheckBox>
+
+                            <Button Grid.Column="3"
                                     Width="120"
                                     Height="32"
                                     HorizontalAlignment="Left"
@@ -519,7 +527,7 @@
                                 Add new items
                             </Button>
 
-                            <Grid Grid.Column="4">
+                            <Grid Grid.Column="5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60"/>
                                     <ColumnDefinition Width="5"/>
@@ -590,6 +598,7 @@
                             <customWpfControls:ExtendedListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <customWpfControls:DragAnimatedPanel FillType="{Binding SelectedFillType, Converter={StaticResource ListFillTypeToFillTypeConverter}}"
+                                                                         IsDragAndDropEnable="{Binding IsDragAndDropEnable}"
                                                                          VerticalAlignment="Top"
                                                                          HorizontalAlignment="Left"/>
                                 </ItemsPanelTemplate>

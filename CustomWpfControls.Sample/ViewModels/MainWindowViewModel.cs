@@ -23,6 +23,7 @@ namespace CustomWpfControls.Sample.ViewModels
         private IEnumerable<ListFillType> _fillTypes;
         private ListFillType _selectedFillType = ListFillType.Table;
         private bool _resizeEnable = true;
+        private bool _isDragAndDropEnable = true;
 
         #endregion
 
@@ -204,6 +205,12 @@ namespace CustomWpfControls.Sample.ViewModels
         {
             get => _resizeEnable;
             set => SetField(ref _resizeEnable, value);
+        }
+
+        public bool IsDragAndDropEnable
+        {
+            get => _isDragAndDropEnable;
+            set => SetField(ref _isDragAndDropEnable, value);
         }
 
         #endregion

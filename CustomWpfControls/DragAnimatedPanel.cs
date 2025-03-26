@@ -39,6 +39,21 @@ namespace CustomWpfControls
         #region Properties
 
         /// <summary>
+        /// Включение / отключение возможности перемещения объектов мышью.
+        /// </summary>
+        public bool IsDragAndDropEnable
+        {
+            get => (bool)GetValue(IsDragAndDropEnableProperty);
+            set => SetValue(IsDragAndDropEnableProperty, value);
+        }
+
+        public static readonly DependencyProperty IsDragAndDropEnableProperty = DependencyProperty.Register(nameof(IsDragAndDropEnable),
+            typeof(bool),
+            typeof(DragAnimatedPanel),
+            new FrameworkPropertyMetadata(true)
+        );
+
+        /// <summary>
         /// Тип заполнения панели: колонка, строка, построчное заполнение и т.п.
         /// </summary>
         public FillType FillType
