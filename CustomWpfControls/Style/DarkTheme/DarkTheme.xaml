@@ -11,6 +11,7 @@
         <ResourceDictionary Source="../DateTimePicker.xaml"/>
         <ResourceDictionary Source="../GridSplitter.xaml"/>
         <ResourceDictionary Source="../ListBox.xaml"/>
+        <ResourceDictionary Source="../ProgressBar.xaml"/>
         <ResourceDictionary Source="../ScrollViewer.xaml"/>
         <ResourceDictionary Source="../TabControl.xaml"/>
         <ResourceDictionary Source="../TimePicker.xaml"/>

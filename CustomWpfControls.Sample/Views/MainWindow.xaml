@@ -652,6 +652,16 @@
                     </Grid>
                 </TabItem.Content>
             </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock>Progress Bar</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <ProgressBar Width="200" Height="20"/>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

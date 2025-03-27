@@ -36,5 +36,18 @@
     <Color x:Key="CalendarSelectedBackgroundColor">#3366CC</Color>
     <Color x:Key="CalendarForegroundColor">#FFFFFF</Color>
 
+    <!-- Progress bar -->
+    <LinearGradientBrush x:Key="ProgressBarForeground"
+                         StartPoint="0,0"
+                         EndPoint="1,0">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#000000FF" Offset="0" />
+                <GradientStop Color="#DD00D300" Offset="0.4" />
+                <GradientStop Color="#DD00D300" Offset="0.6" />
+                <GradientStop Color="#000000FF" Offset="1" />
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
 
 </ResourceDictionary>
