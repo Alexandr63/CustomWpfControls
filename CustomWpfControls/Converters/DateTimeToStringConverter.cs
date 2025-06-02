@@ -8,20 +8,30 @@ namespace CustomWpfControls.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            DateTime dateTime = (DateTime)values[0];
+            DateTime? dateTime = (DateTime?)values[0];
             string formatString = (string)values[1];
-
-            if (string.IsNullOrEmpty(formatString))
-            {
-                return dateTime.ToString("g", CultureInfo.CurrentUICulture);
-            }
-
-            return dateTime.ToString(formatString);
+            
+            return ConvertToString(dateTime, formatString);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+
+        public static string ConvertToString(DateTime? dateTime, string formatString)
+        {
+            if (!dateTime.HasValue)
+            {
+                return string.Empty;
+            }
+
+            if (string.IsNullOrEmpty(formatString))
+            {
+                return dateTime.Value.ToString("g", CultureInfo.CurrentUICulture);
+            }
+
+            return dateTime.Value.ToString(formatString);
         }
     }
 }

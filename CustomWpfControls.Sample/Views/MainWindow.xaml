@@ -275,7 +275,7 @@
                     </Grid>
                 </TabItem.Content>
             </TabItem>
-            <TabItem>
+            <TabItem IsSelected="true">
                 <TabItem.Header>
                     <TextBlock>Date and Time</TextBlock>
                 </TabItem.Header>
@@ -304,7 +304,9 @@
                                 BorderBrush="{DynamicResource BorderSecondary}"
                                 BorderThickness="2" 
                                 CornerRadius="10">
-                            <customWpfControls:DateTimePicker Width="270" DateTimeFormatString="dd:MM:yyyy HH:mm"/>
+                            <customWpfControls:DateTimePicker Width="270" 
+                                                              DateTimeFormatString="dd MMM yyyy HH:mm"
+                                                              KnownDateTimeFormatStrings="yyyy-MM-dd HH:mm:ss,yyyy-MM-ddTHH:mm:ssZ,yyyy-MM-ddЕHHЖmmЖssЯ"/>
                         </Border>
                     </Grid>
                 </TabItem.Content>
@@ -459,7 +461,7 @@
                     </Grid>
                 </TabItem.Content>
             </TabItem>
-            <TabItem IsSelected="true">
+            <TabItem>
                 <TabItem.Header>
                     <TextBlock>ExtendedListBox + DragAnimatedPanel </TextBlock>
                 </TabItem.Header>

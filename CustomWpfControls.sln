@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomWpfControls", "Custom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomWpfControls.Sample", "CustomWpfControls.Sample\CustomWpfControls.Sample.csproj", "{49C488F6-E742-4BDF-9056-DA4B7C7D44DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{F964C2AA-D98C-475F-B489-E3BEA87D841D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{49C488F6-E742-4BDF-9056-DA4B7C7D44DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49C488F6-E742-4BDF-9056-DA4B7C7D44DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49C488F6-E742-4BDF-9056-DA4B7C7D44DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F964C2AA-D98C-475F-B489-E3BEA87D841D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F964C2AA-D98C-475F-B489-E3BEA87D841D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F964C2AA-D98C-475F-B489-E3BEA87D841D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F964C2AA-D98C-475F-B489-E3BEA87D841D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using CustomWpfControls.Converters;
+using Calendar = System.Windows.Controls.Calendar;
 
 namespace CustomWpfControls
 {
@@ -39,11 +43,10 @@ namespace CustomWpfControls
 
         #endregion
 
-        #region Ctor
+        #region Ctor.
 
         public DateTimePicker()
         {
-            DateTime = DateTime.Now;
         }
 
         #endregion
@@ -53,13 +56,13 @@ namespace CustomWpfControls
         /// <summary>
         /// Дата и время, отображаемое в контроле.
         /// </summary>
-        public DateTime DateTime
+        public DateTime? DateTime
         {
-            get => (DateTime)GetValue(DateTimeProperty);
+            get => (DateTime?)GetValue(DateTimeProperty);
             set => SetValue(DateTimeProperty, value);
         }
 
-        public static readonly DependencyProperty DateTimeProperty = DependencyProperty.Register(nameof(DateTime), typeof(DateTime), typeof(DateTimePicker), new UIPropertyMetadata(DateTime.Now));
+        public static readonly DependencyProperty DateTimeProperty = DependencyProperty.Register(nameof(DateTime), typeof(DateTime?), typeof(DateTimePicker), new UIPropertyMetadata(null));
 
         /// <summary>
         /// Дата, отображаемое в панели редактирования.
@@ -70,7 +73,7 @@ namespace CustomWpfControls
             set => SetValue(DateForEditProperty, value);
         }
 
-        internal static readonly DependencyProperty DateForEditProperty = DependencyProperty.Register(nameof(DateForEdit), typeof(DateTime), typeof(DateTimePicker), new UIPropertyMetadata(DateTime.Now));
+        internal static readonly DependencyProperty DateForEditProperty = DependencyProperty.Register(nameof(DateForEdit), typeof(DateTime), typeof(DateTimePicker), new UIPropertyMetadata(System.DateTime.Now));
 
         /// <summary>
         /// Время, отображаемое в панели редактирования.
@@ -94,10 +97,21 @@ namespace CustomWpfControls
 
         public static readonly DependencyProperty DateTimeFormatStringProperty = DependencyProperty.Register(nameof(DateTimeFormatString), typeof(string), typeof(DateTimePicker), new UIPropertyMetadata());
 
+        /// <summary>
+        /// Известные строки форматирования даты разделенные запятой. Предназначены для парсинга введенной в контрол строки.
+        /// </summary>
+        public string KnownDateTimeFormatStrings
+        { 
+            get => (string)GetValue(KnownDateTimeFormatStringsProperty);
+            set => SetValue(KnownDateTimeFormatStringsProperty, value);
+        }
+
+        public static readonly DependencyProperty KnownDateTimeFormatStringsProperty = DependencyProperty.Register(nameof(KnownDateTimeFormatStrings), typeof(string), typeof(DateTimePicker), new UIPropertyMetadata(string.Empty));
+
         #endregion
 
         #region Public Methods
-        
+
         /// <summary>
         /// Получаем выполняем байндинг и подписываемся на событие PART элементов.
         /// </summary>
@@ -135,6 +149,8 @@ namespace CustomWpfControls
                     Converter = new DateTimeToStringConverter()
                 };
                 dateTimeTextBox.SetBinding(TextBox.TextProperty, dateTimeBinding);
+
+                dateTimeTextBox.TextChanged += DateTimeTextBoxTextChangedEventHandler;
             }
             
             if (GetTemplateChild(SELECT_BUTTON_PART_NAME) is Button selectButton)
@@ -163,6 +179,19 @@ namespace CustomWpfControls
                     }
                 };
                 calendar.SetBinding(Calendar.SelectedDateProperty, dateBinding);
+
+                Binding displayDateBinding = new Binding
+                {
+                    Path = new PropertyPath(nameof(DateForEdit)),
+                    Mode = BindingMode.TwoWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                    RelativeSource = new RelativeSource()
+                    {
+                        Mode = RelativeSourceMode.FindAncestor,
+                        AncestorType = typeof(DateTimePicker)
+                    }
+                };
+                calendar.SetBinding(Calendar.DisplayDateProperty, displayDateBinding);
             }
             
             if (GetTemplateChild(TIME_PICKER_PART_NAME) is TimePicker timePicker)
@@ -209,8 +238,16 @@ namespace CustomWpfControls
         {
             if (!_dateTimeSelector.IsOpen)
             {
-                DateForEdit = DateTime;
-                TimeForEdit = DateTime.TimeOfDay;
+                if (DateTime.HasValue)
+                {
+                    DateForEdit = DateTime.Value;
+                    TimeForEdit = DateTime.Value.TimeOfDay;
+                }
+                else
+                {
+                    DateForEdit = System.DateTime.Now;
+                    TimeForEdit = System.DateTime.Now.TimeOfDay;
+                }
 
                 _dateTimeSelector.IsOpen = true;
             }
@@ -235,6 +272,24 @@ namespace CustomWpfControls
         {
             _dateTimeSelector.IsOpen = false;
             DateTime = new DateTime(DateForEdit.Year, DateForEdit.Month, DateForEdit.Day, TimeForEdit.Hours, TimeForEdit.Minutes, 0);
+        }
+
+        private void DateTimeTextBoxTextChangedEventHandler(object sender, TextChangedEventArgs e)
+        {
+            string text = ((TextBox) sender).Text;
+            List<string> formatStrings = new List<string>() { DateTimeFormatString };
+            if (!string.IsNullOrEmpty(KnownDateTimeFormatStrings))
+            {
+                formatStrings.AddRange(KnownDateTimeFormatStrings.Split(','));
+            }
+
+            if (DateTimeToStringConverter.ConvertToString(DateTime, DateTimeFormatString) != text)
+            {
+                if(System.DateTime.TryParseExact(text, formatStrings.ToArray(), CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime dt))
+                {
+                    DateTime = dt;
+                }
+            }
         }
 
         #endregion
