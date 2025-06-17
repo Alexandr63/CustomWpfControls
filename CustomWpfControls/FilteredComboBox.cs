@@ -98,6 +98,7 @@ namespace CustomWpfControls
                     {
                         comboBoxItem.Visibility = Visibility.Visible;
                         SelectedItem = item;
+                        IsDropDownOpen = false;
                         return;
                     }
                 }
@@ -106,6 +107,11 @@ namespace CustomWpfControls
             }
             else if(IsDropDownOpen && !_filterTextBox.IsFocused)
             {
+                _filterTextBox.Focus();
+            }
+            else if(e.Key != Key.Tab)
+            {
+                IsDropDownOpen = true;
                 _filterTextBox.Focus();
             }
 

@@ -57,7 +57,8 @@
                                     Height="32"
                                     Width="32"
                                     Style="{DynamicResource FlatButton}" 
-                                    TabIndex="2">
+                                    Focusable="False"
+                                    KeyboardNavigation.TabNavigation="None">
                                 <Viewbox Stretch="None">
                                     <Canvas Width="32" Height="32" Margin="3 3 0 0">
                                         <Path Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"

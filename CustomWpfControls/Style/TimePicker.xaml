@@ -80,7 +80,8 @@
                                     VerticalAlignment="Top"
                                     Width="20" 
                                     Height="17"
-                                    TabIndex="2">
+                                    Focusable="False"
+                                    KeyboardNavigation.TabNavigation="None">
                                 <Viewbox Stretch="Fill">
                                     <Canvas Width="30" Height="30">
                                         <Path Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
@@ -96,7 +97,8 @@
                                     Width="20" 
                                     Height="17"
                                     Margin="0 0 0 -10"
-                                    TabIndex="3">
+                                    Focusable="False"
+                                    KeyboardNavigation.TabNavigation="None">
                                 <Viewbox Stretch="Fill">
                                     <Canvas Width="30" Height="30">
                                         <Path Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"

@@ -254,9 +254,10 @@
                         <customWpfControls:FilteredComboBox Grid.Row="3"
                                                             Grid.Column="2"
                                                             Margin="20 0"
-                                                            Focusable="False"
+                                                            Focusable="True"
                                                             Width="250"
                                                             Height="32"
+                                                            TabIndex="1"
                                                             ItemsSource="{Binding TestItems}"
                                                             DisplayMemberPath="Name"/>
 
@@ -267,9 +268,10 @@
                         <ComboBox Grid.Row="5"
                                   Grid.Column="2"
                                   Margin="20 0"
-                                  Focusable="False"
+                                  Focusable="True"
                                   Width="250"
                                   Height="32"
+                                  TabIndex="1"
                                   ItemsSource="{Binding TestItems}"
                                   DisplayMemberPath="Name"/>
                     </Grid>
@@ -296,7 +298,7 @@
                                 BorderBrush="{DynamicResource BorderSecondary}"
                                 BorderThickness="2" 
                                 CornerRadius="10">
-                            <customWpfControls:TimePicker />
+                            <customWpfControls:TimePicker TabIndex="0" />
                         </Border>
                         <Border Grid.Row="3" 
                                 Width="300"
@@ -306,7 +308,9 @@
                                 CornerRadius="10">
                             <customWpfControls:DateTimePicker Width="270" 
                                                               DateTimeFormatString="dd MMM yyyy HH:mm"
-                                                              KnownDateTimeFormatStrings="yyyy-MM-dd HH:mm:ss,yyyy-MM-ddTHH:mm:ssZ,yyyy-MM-ddЕHHЖmmЖssЯ"/>
+                                                              KnownDateTimeFormatStrings="yyyy-MM-dd HH:mm:ss,yyyy-MM-ddTHH:mm:ssZ,yyyy-MM-ddЕHHЖmmЖssЯ"
+                                                              TabIndex="1"
+                                                              KeyboardNavigation.TabNavigation="Once"/>
                         </Border>
                     </Grid>
                 </TabItem.Content>
