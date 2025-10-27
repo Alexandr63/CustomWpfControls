@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -26,7 +25,7 @@ namespace CustomWpfControls
     public class DateTimePicker : Control, IDataErrorInfo
     {
         #region Constants
-        
+
         public const string DATE_TIME_TEXT_BOX_PART_NAME = "PART_DateTimeTextBox";
         public const string SELECT_BUTTON_PART_NAME = "PART_SelectButton";
         public const string SELECTOR_POPUP_PART_NAME = "PART_SelectorPopup";
@@ -40,6 +39,7 @@ namespace CustomWpfControls
         #region Private Fields
 
         private Popup _dateTimeSelector = null;
+        private TextBox _dateTimeTextBox = null;
 
         #endregion
 
@@ -85,7 +85,7 @@ namespace CustomWpfControls
         }
 
         internal static readonly DependencyProperty TimeForEditProperty = DependencyProperty.Register(nameof(TimeForEdit), typeof(TimeSpan), typeof(DateTimePicker), new UIPropertyMetadata(TimeSpan.Zero));
-        
+
         /// <summary>
         /// Строка форматирования для отображения даты и времени.
         /// </summary>
@@ -101,7 +101,7 @@ namespace CustomWpfControls
         /// Известные строки форматирования даты разделенные запятой. Предназначены для парсинга введенной в контрол строки.
         /// </summary>
         public string KnownDateTimeFormatStrings
-        { 
+        {
             get => (string)GetValue(KnownDateTimeFormatStringsProperty);
             set => SetValue(KnownDateTimeFormatStringsProperty, value);
         }
@@ -119,7 +119,8 @@ namespace CustomWpfControls
         {
             base.OnApplyTemplate();
 
-            if (GetTemplateChild(DATE_TIME_TEXT_BOX_PART_NAME) is TextBox dateTimeTextBox)
+            _dateTimeTextBox = GetTemplateChild(DATE_TIME_TEXT_BOX_PART_NAME) as TextBox;
+            if (_dateTimeTextBox != null)
             {
                 MultiBinding dateTimeBinding = new MultiBinding
                 {
@@ -148,11 +149,11 @@ namespace CustomWpfControls
                     UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                     Converter = new DateTimeToStringConverter()
                 };
-                dateTimeTextBox.SetBinding(TextBox.TextProperty, dateTimeBinding);
+                _dateTimeTextBox.SetBinding(TextBox.TextProperty, dateTimeBinding);
 
-                dateTimeTextBox.TextChanged += DateTimeTextBoxTextChangedEventHandler;
+                _dateTimeTextBox.TextChanged += DateTimeTextBoxTextChangedEventHandler;
             }
-            
+
             if (GetTemplateChild(SELECT_BUTTON_PART_NAME) is Button selectButton)
             {
                 selectButton.Click += SelectButtonClickEventHandler;
@@ -161,6 +162,7 @@ namespace CustomWpfControls
             if (GetTemplateChild(SELECTOR_POPUP_PART_NAME) is Popup selectorPopup)
             {
                 _dateTimeSelector = selectorPopup;
+                _dateTimeSelector.Closed += DateTimeSelectorClosedEventHandler;
             }
 
             if (GetTemplateChild(CALENDAR_PART_NAME) is Calendar calendar)
@@ -193,7 +195,7 @@ namespace CustomWpfControls
                 };
                 calendar.SetBinding(Calendar.DisplayDateProperty, displayDateBinding);
             }
-            
+
             if (GetTemplateChild(TIME_PICKER_PART_NAME) is TimePicker timePicker)
             {
                 Binding timeBinding = new Binding
@@ -209,7 +211,7 @@ namespace CustomWpfControls
                 };
                 timePicker.SetBinding(TimePicker.TimeProperty, timeBinding);
             }
-            
+
             if (GetTemplateChild(CANCEL_BUTTON_PART_NAME) is Button cancelButton)
             {
                 cancelButton.Click += CancelButtonClickEventHandler;
@@ -219,6 +221,15 @@ namespace CustomWpfControls
             {
                 saveButton.Click += SaveButtonClickEventHandler;
             }
+        }
+
+        /// <summary>
+        /// Установить фокус на поле ввода.
+        /// </summary>
+        public void SetFocus()
+        {
+            _dateTimeTextBox?.Focus();
+            _dateTimeTextBox?.SelectAll();
         }
 
         #endregion
@@ -233,7 +244,7 @@ namespace CustomWpfControls
         #endregion
 
         #region Private Methods
-        
+
         private void SelectButtonClickEventHandler(object sender, RoutedEventArgs e)
         {
             if (!_dateTimeSelector.IsOpen)
@@ -262,7 +273,7 @@ namespace CustomWpfControls
                 originalElement.ReleaseMouseCapture();
             }
         }
-        
+
         private void CancelButtonClickEventHandler(object sender, RoutedEventArgs e)
         {
             _dateTimeSelector.IsOpen = false;
@@ -276,7 +287,15 @@ namespace CustomWpfControls
 
         private void DateTimeTextBoxTextChangedEventHandler(object sender, TextChangedEventArgs e)
         {
-            string text = ((TextBox) sender).Text;
+            string text = ((TextBox)sender).Text;
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                DateTime = null;
+                return;
+            }
+
+            text = PreprocessDateTimeString(text);
+
             List<string> formatStrings = new List<string>() { DateTimeFormatString };
             if (!string.IsNullOrEmpty(KnownDateTimeFormatStrings))
             {
@@ -285,11 +304,27 @@ namespace CustomWpfControls
 
             if (DateTimeToStringConverter.ConvertToString(DateTime, DateTimeFormatString) != text)
             {
-                if(System.DateTime.TryParseExact(text, formatStrings.ToArray(), CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime dt))
+                if (System.DateTime.TryParseExact(text, formatStrings.ToArray(), CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime dt))
                 {
                     DateTime = dt;
                 }
+                else
+                {
+                    DateTime = null;
+                }
             }
+        }
+        private void DateTimeSelectorClosedEventHandler(object sender, EventArgs e)
+        {
+            _dateTimeTextBox?.Focus();
+        }
+
+        /// <summary>
+        /// Если считать дату из баркода в русской раскладке она будет записана в формате 'yyyy-MM-ddЕHHЖmmЖssЯ'. Заменяем русские символы.
+        /// </summary>
+        private string PreprocessDateTimeString(string dateTime)
+        {
+            return dateTime.Replace('Е', 'T').Replace('Ж', ':').Replace('Я', 'Z');
         }
 
         #endregion
