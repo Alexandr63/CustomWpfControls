@@ -12,6 +12,8 @@ namespace CustomWpfControls
     {
         #region Private Fields
 
+        private const int DRAG_ELEMENT_Z_INDEX = 1000;
+
         private DateTime _mouseDownTime;
         private int _draggedIndex;
         private bool _firstScrollRequest = true;
@@ -19,7 +21,6 @@ namespace CustomWpfControls
         private double _lastMousePosX;
         private double _lastMousePosY;
         private UIElement _mouseSelectedElement = null;
-        private int _lastMouseMoveTime;
         private double _x;
         private double _y;
 
@@ -32,6 +33,18 @@ namespace CustomWpfControls
         #endregion
 
         #region Private Methods
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point mousePos = Mouse.GetPosition(this);
+                _lastMousePosX = mousePos.X;
+                _lastMousePosY = mousePos.Y;
+                _mouseDownTime = DateTime.Now;
+                _mouseSelectedElement = GetChildThatHasMouseOver();
+            }
+        }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
@@ -60,6 +73,11 @@ namespace CustomWpfControls
         /// </summary>
         private bool CheckClick()
         {
+            if (_mouseSelectedElement == null)
+            {
+                return false;
+            }
+
             const double MIN_CLICK_TIME_MILLISECONDS = 40d;
             const int MIN_SHIFT_VALUE = 10;
 
@@ -85,27 +103,22 @@ namespace CustomWpfControls
             _x = p.X;
             _y = p.Y;
 
-            Panel.SetZIndex(DraggedElement, 1000);
-
-            _lastMouseMoveTime = e.Timestamp;
-
-            InvalidateArrange();
-
-            e.Handled = true;
+            SetZIndex(DraggedElement, DRAG_ELEMENT_Z_INDEX);
 
             CaptureMouse();
+
+            e.Handled = true;
         }
 
         private void OnDragOver(MouseEventArgs e)
         {
-            const int MOUSE_TIME_DIF = 25;
             const double MOUSE_DIF = 10d;
 
             Point mousePos = Mouse.GetPosition(this);
             double difX = mousePos.X - _lastMousePosX;
             double difY = mousePos.Y - _lastMousePosY;
-            int timeDif = e.Timestamp - _lastMouseMoveTime;
-            if ((Math.Abs(difX) > MOUSE_DIF || Math.Abs(difY) > MOUSE_DIF) && timeDif > MOUSE_TIME_DIF)
+            
+            if ((Math.Abs(difX) > MOUSE_DIF || Math.Abs(difY) > MOUSE_DIF))
             {
                 DoScroll();
                 
@@ -115,26 +128,10 @@ namespace CustomWpfControls
 
                 _lastMousePosX = mousePos.X;
                 _lastMousePosY = mousePos.Y;
-                _lastMouseMoveTime = e.Timestamp;
+
                 SwapElement(index);
+
                 MoveTo(DraggedElement, _x, _y);
-            }
-        }
-
-        private void OnMouseDown(object sender, MouseEventArgs e)
-        {
-            Point mousePos = Mouse.GetPosition(this);
-            _lastMousePosX = mousePos.X;
-            _lastMousePosY = mousePos.Y;
-            _mouseDownTime = DateTime.Now;
-            _mouseSelectedElement = GetChildThatHasMouseOver();
-        }
-
-        private void OnMouseUp(object sender, MouseEventArgs e)
-        {
-            if (IsMouseCaptured)
-            {
-                ReleaseMouseCapture();
             }
         }
 
@@ -165,27 +162,13 @@ namespace CustomWpfControls
             list.Insert(targetIndex, dragged);
 
             // Получаем новый элемент UI после изменения коллекции
-            DraggedElement = Children[targetIndex]; ; 
+            DraggedElement = Children[targetIndex];
 
-            FillNewDraggedChild(DraggedElement);
+            SetZIndex(DraggedElement, DRAG_ELEMENT_Z_INDEX);
+            
             _draggedIndex = targetIndex;
 
             InvalidateArrange();
-        }
-
-        private void FillNewDraggedChild(UIElement child)
-        {
-            MoveTo(child, _x, _y);
-        }
-
-        private void OnLostMouseCapture(object sender, MouseEventArgs e)
-        {
-            // Finish drag element
-            if (DraggedElement != null)
-            {
-                DraggedElement = null;
-                InvalidateArrange();
-            }
         }
 
         private void DoScroll()
@@ -216,6 +199,16 @@ namespace CustomWpfControls
             }
         }
 
+        private void OnMouseUp(object sender, MouseEventArgs e)
+        {
+            if (IsMouseCaptured)
+            {
+                ReleaseMouseCapture();
+                DraggedElement = null;
+                InvalidateArrange();
+            }
+        }
+        
         private ScrollViewer GetScrollViewer()
         {
             if (_firstScrollRequest && _scrollContainer == null)
