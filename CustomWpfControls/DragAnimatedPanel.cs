@@ -26,11 +26,10 @@ namespace CustomWpfControls
         public DragAnimatedPanel()
         {
             UpdateLayoutStrategy();
-
-            MouseLeftButtonUp += OnMouseUp;
-            MouseMove += OnMouseMove;
             
-            AddHandler(MouseDownEvent, new MouseButtonEventHandler(OnMouseDown), true);
+            MouseMove += OnMouseMove;
+            AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(OnMouseLeftButtonUp), true);
+            AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(OnMouseLeftButtonDown), true);
         }
 
         #endregion

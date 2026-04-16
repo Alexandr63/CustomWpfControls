@@ -34,16 +34,13 @@ namespace CustomWpfControls
 
         #region Private Methods
 
-        private void OnMouseDown(object sender, MouseEventArgs e)
+        private void OnMouseLeftButtonDown(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                Point mousePos = Mouse.GetPosition(this);
-                _lastMousePosX = mousePos.X;
-                _lastMousePosY = mousePos.Y;
-                _mouseDownTime = DateTime.Now;
-                _mouseSelectedElement = GetChildThatHasMouseOver();
-            }
+            Point mousePos = Mouse.GetPosition(this);
+            _lastMousePosX = mousePos.X;
+            _lastMousePosY = mousePos.Y;
+            _mouseDownTime = DateTime.Now;
+            _mouseSelectedElement = GetChildThatHasMouseOver();
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -199,7 +196,7 @@ namespace CustomWpfControls
             }
         }
 
-        private void OnMouseUp(object sender, MouseEventArgs e)
+        private void OnMouseLeftButtonUp(object sender, MouseEventArgs e)
         {
             if (IsMouseCaptured)
             {
