@@ -201,11 +201,18 @@ namespace CustomWpfControls
             if (IsMouseCaptured)
             {
                 ReleaseMouseCapture();
+            }
+        }
+
+        private void OnLostMouseCapture(object sender, MouseEventArgs e)
+        {
+            if (DraggedElement != null)
+            {
                 DraggedElement = null;
                 InvalidateArrange();
             }
         }
-        
+
         private ScrollViewer GetScrollViewer()
         {
             if (_firstScrollRequest && _scrollContainer == null)

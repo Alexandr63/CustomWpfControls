@@ -28,6 +28,7 @@ namespace CustomWpfControls
             UpdateLayoutStrategy();
             
             MouseMove += OnMouseMove;
+            LostMouseCapture += OnLostMouseCapture;
             AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(OnMouseLeftButtonUp), true);
             AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(OnMouseLeftButtonDown), true);
         }

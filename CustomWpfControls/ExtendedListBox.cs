@@ -134,6 +134,7 @@ namespace CustomWpfControls
         private static object ScalePropertyCoerceValueCallback(DependencyObject d, object value)
         {
             ExtendedListBox control = (ExtendedListBox)d;
+
             if (control.MouseResizeEnable)
             {
                 if ((double) value < control.MinScale ||
